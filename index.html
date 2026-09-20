@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>دعوة زفاف - Raashida & Aawez</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Noto+Nastaliq+Urdu:wght@400;700&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-ivory: #FAF6F0;
+            --burgundy: #58111A;
+            --burgundy-light: #7A1C28;
+            --burgundy-dark: #3B0A10;
+            --gold: #D4AF37;
+            --gold-light: #F3E5AB;
+            --gold-dark: #AA820A;
+            --text-main: #2C221E;
+            --text-muted: #6B5B52;
+            --light-brown: #A67C52;
+            
+            --font-arabic: 'Amiri', serif;
+            --font-en-head: 'Cormorant Garamond', serif;
+            --font-en-body: 'EB Garamond', serif;
+            --font-script: 'Great Vibes', cursive;
+            --font-handwriting-ar: 'Aref Ruqaa', serif;
+            --font-urdu: 'Noto Nastaliq Urdu', serif;
+            --font-hindi: 'Noto Serif Devanagari', serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body {
+            background-color: #121212;
+            font-family: var(--font-arabic);
+            color: var(--text-main);
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Mobile Container Frame - General Background */
+        .app-container {
+            width: 100%;
+            max-width: 480px;
+            min-height: 100vh;
+            background-color: var(--bg-ivory);
+            background-image: url('assets/images/bg-texture.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            overflow-y: auto;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Language Typography */
+        [data-lang="en"] { direction: ltr; font-family: var(--font-en-body); }
+        [data-lang="en"] .heading-font { font-family: var(--font-en-head); }
+
+        [data-lang="ur"] { direction: rtl; font-family: var(--font-urdu); line-height: 2.2; }
+        [data-lang="hi"] { direction: ltr; font-family: var(--font-hindi); }
+        [data-lang="ar"] { direction: rtl; font-family: var(--font-arabic); }
+
+        /* Floating Petals */
+        #petals-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 99;
+            overflow: hidden;
+        }
+
+        .petal {
+            position: absolute;
+            background: linear-gradient(135deg, var(--burgundy-light), var(--burgundy));
+            border-radius: 15px 0 15px 0;
+            opacity: 0.7;
+            animation: floatPetal 10s linear infinite;
+        }
+
+        @keyframes floatPetal {
+            0% { transform: translateY(-10vh) rotate(0deg) scale(0.8); opacity: 0.8; }
+            100% { transform: translateY(110vh) rotate(360deg) scale(1.2); opacity: 0.1; }
+        }
+
+        /* Audio Player Floating Button */
+        .audio-control {
+            position: fixed;
+            bottom: 20px; left: 20px;
+            z-index: 100;
+            background: rgba(88, 17, 26, 0.85);
+            backdrop-filter: blur(8px);
+            color: var(--gold-light);
+            border: 1px solid var(--gold);
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        .audio-control.playing i { animation: spin 4s linear infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* Floating Dua Button */
+        .dua-btn {
+            position: fixed;
+            bottom: 20px; right: 20px;
+            z-index: 100;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--burgundy-dark);
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            border: none;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Modal Popup */
+        .modal-overlay {
+            position: fixed;
+            top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        .modal-card {
+            background: var(--bg-ivory);
+            border: 2px solid var(--gold);
+            padding: 25px;
+            border-radius: 16px;
+            max-width: 90%; width: 380px;
+            text-align: center;
+        }
+
+        /* SCENE 1: Unique Background for First Page */
+        #scene1 {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 40px 20px 80px;
+            position: relative;
+            text-align: center;
+            background-image: url('assets/images/first-page-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .scene1-content {
+            width: 100%;
+            margin-top: auto;
+            padding-top: 120px;
+        }
+
+        .gold-line {
+            height: 1px;
+            width: 70%;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 25px auto;
+        }
+
+        /* Language options centered and narrower */
+        .lang-options {
+            width: 100%;
+            max-width: 280px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            padding: 12px 20px;
+            border-radius: 30px;
+            color: var(--burgundy);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(6px);
+        }
+        .lang-btn.selected {
+            background: var(--burgundy);
+            color: var(--gold-light);
+            border-color: var(--gold);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--burgundy), var(--burgundy-dark));
+            color: var(--gold-light);
+            border: 1px solid var(--gold);
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(88, 17, 26, 0.3);
+            opacity: 0;
+            transform: translateY(15px);
+            pointer-events: none;
+            transition: all 0.3s ease;
+            margin-top: 25px;
+        }
+        .btn-primary.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-ivory);
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            text-align: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+        .loading-screen.active { opacity: 1; pointer-events: auto; }
+        .spinner {
+            width: 50px; height: 50px;
+            border: 3px solid rgba(212, 175, 55, 0.2);
+            border-top: 3px solid var(--gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        /* SCENE 2: Video Envelope Section */
+        #envelope-scene {
+            display: none;
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .seal-cover-full {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 2;
+            transition: opacity 0.4s ease;
+        }
+
+        .envelope-video-full {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 1;
+        }
+
+        .tap-instruction {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.1rem;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+            pointer-events: none;
+            text-align: center;
+            width: 100%;
+            padding: 0 20px;
+            transition: opacity 0.3s ease;
+        }
+
+        #envelope-scene.playing .seal-cover-full,
+        #envelope-scene.playing .tap-instruction {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* SCENE 3: Main Landing Page Content */
+        #main-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 1s ease;
+            padding: 0;
+        }
+
+        /* 9:16 Banner Section */
+        .hero-banner {
+            width: 100%;
+            aspect-ratio: 9 / 16;
+            background-image: linear-gradient(rgba(250, 246, 240, 0.15), rgba(250, 246, 240, 0.35)), url('assets/images/main-banner.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding: 30px 20px 40px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-banner-content {
+            width: 100%;
+            max-width: 85%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        /* Landing Section */
+        .landing-section {
+            padding: 20px 20px 30px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .landing-section.couple-section {
+            padding-top: 10px;
+        }
+
+        /* Flower Divider Styling */
+        .flower-divider-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .flower-divider-wrapper.below-banner {
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        .flower-divider-img {
+            width: 88%;
+            max-width: 360px;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0px 4px 8px rgba(88, 17, 26, 0.15));
+        }
+
+        /* Gazebo Venue Illustration Styling */
+        .gazebo-img {
+            width: 140px;
+            max-width: 50%;
+            height: auto;
+            margin: 0 auto 15px auto;
+            display: block;
+            filter: drop-shadow(0px 6px 12px rgba(88, 17, 26, 0.15));
+        }
+
+        /* Wedding Cake Illustration Styling */
+        .cake-img {
+            width: 150px;
+            max-width: 55%;
+            height: auto;
+            margin: 0 auto 15px auto;
+            display: block;
+            filter: drop-shadow(0px 6px 12px rgba(88, 17, 26, 0.15));
+        }
+
+        /* Vintage Phone Illustration Styling */
+        .phone-img {
+            width: 130px;
+            max-width: 48%;
+            height: auto;
+            margin: 0 auto 15px auto;
+            display: block;
+            filter: drop-shadow(0px 6px 12px rgba(88, 17, 26, 0.15));
+        }
+
+        .quran-verse {
+            font-size: 1.15rem;
+            color: var(--burgundy);
+            line-height: 1.9;
+        }
+
+        /* Luxurious Handwriting Font for Couple Names */
+        .couple-names {
+            font-family: var(--font-script), var(--font-handwriting-ar), cursive;
+            font-size: 3.2rem;
+            color: var(--burgundy);
+            margin: 10px 0;
+            font-weight: normal;
+            line-height: 1.2;
+            text-shadow: 0px 2px 4px rgba(88, 17, 26, 0.15);
+        }
+
+        /* --- Slow & Smooth Scroll Fade-In Animation --- */
+        .fade-in-element {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.4s cubic-bezier(0.25, 1, 0.5, 1), transform 1.4s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: opacity, transform;
+        }
+
+        .fade-in-element.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Delays for Staggered Effect */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.35s; }
+        .delay-3 { transition-delay: 0.6s; }
+
+        /* Scratch Card Component - 4 Circles Design */
+        .scratch-circles-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin: 20px auto;
+            max-width: 100%;
+            flex-wrap: nowrap;
+        }
+
+        .scratch-circle-item {
+            position: relative;
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--gold);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            background: #ffffff;
+            touch-action: none;
+        }
+
+        .scratch-circle-content {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--burgundy);
+            border-radius: 50%;
+            background: #ffffff;
+        }
+
+        .scratch-val {
+            font-size: 1rem;
+            font-weight: bold;
+            line-height: 1.1;
+        }
+
+        .scratch-lbl {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .scratch-circle-canvas {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            cursor: pointer;
+            z-index: 5;
+            border-radius: 50%;
+        }
+
+        /* Countdown Grid */
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .timer-box {
+            background: transparent;
+            color: var(--burgundy);
+            padding: 10px 5px;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        /* Form Inputs */
+        .form-group { margin-bottom: 20px; text-align: right; }
+        [dir="ltr"] .form-group { text-align: left; }
+        .form-input, .form-select {
+            width: 100%; padding: 12px 15px;
+            border: none;
+            border-bottom: 1px solid var(--gold);
+            background: transparent;
+            outline: none;
+            font-family: inherit;
+            color: var(--text-main);
+        }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--burgundy-dark);
+            text-decoration: none;
+            padding: 14px 24px;
+            border-radius: 30px;
+            font-weight: bold;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .qr-code-img {
+            width: 130px;
+            height: 130px;
+            margin: 15px auto 5px;
+            border: 1px solid var(--gold);
+            padding: 5px;
+            border-radius: 8px;
+            background: white;
+        }
+
+        .footer-note {
+            padding: 40px 20px 60px;
+            text-align: center;
+            background: var(--burgundy);
+            color: var(--gold-light);
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container" id="app">
+        <!-- Floating Petals Container -->
+        <div id="petals-container"></div>
+
+        <!-- Local Audio Player -->
+        <div class="audio-control" id="audioToggle" onclick="toggleAudio()">
+            <i class="fa-solid fa-music"></i>
+        </div>
+        <audio id="bgAudio" loop preload="auto">
+            <source src="assets/audio/bg-music.mp3" type="audio/mp3">
+        </audio>
+
+        <!-- Floating Dua Button -->
+        <button class="dua-btn" onclick="openDuaModal()">
+            <i class="fa-solid fa-hands-praying"></i>
+            <span id="duaBtnText">دعاء</span>
+        </button>
+
+        <!-- Dua Modal Popup -->
+        <div class="modal-overlay" id="duaModal">
+            <div class="modal-card">
+                <i class="fa-solid fa-heart" style="color: var(--gold); font-size: 2rem; margin-bottom: 10px;"></i>
+                <h3 style="color: var(--burgundy); margin-bottom: 15px;" id="duaModalTitle">دعاء للعروسين</h3>
+                <p style="font-size: 1.1rem; color: var(--burgundy-dark); line-height: 1.8;" id="duaModalText">
+                    "اللَّهُمَّ بَارِكْ لَهُمَا وَبَارِكْ عَلَيْهِمَا وَاجْمَعْ بَيْنَهُمَا فِي خَيْرٍ"
+                </p>
+                <button class="btn-action" style="margin-top: 20px;" onclick="closeDuaModal()">آمين</button>
+            </div>
+        </div>
+
+        <!-- SCENE 1: Language Selection -->
+        <div id="scene1">
+            <div class="scene1-content">
+                <p style="font-weight: 600; color: var(--burgundy); margin-bottom: 20px;" id="selectLangText">
+                    اختر اللغة المفضلة / Choose Language
+                </p>
+                <div class="lang-options">
+                    <button class="lang-btn" onclick="selectLanguage('en')">
+                        <span>English</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                    <button class="lang-btn" onclick="selectLanguage('ur')">
+                        <span>اردو (Urdu)</span>
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button class="lang-btn" onclick="selectLanguage('hi')">
+                        <span>हिन्दी (Hindi)</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                    <button class="lang-btn" onclick="selectLanguage('ar')">
+                        <span>العربية</span>
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                </div>
+            </div>
+
+            <button class="btn-primary" id="openInviteBtn" onclick="startLoadingTransition()">
+                <span id="openInviteText">فتح الدعوة</span>
+                <i class="fa-solid fa-envelope-open" style="margin-right: 8px;"></i>
+            </button>
+        </div>
+
+        <!-- LOADING SCREEN OVERLAY -->
+        <div class="loading-screen" id="loadingScreen">
+            <div class="spinner"></div>
+            <p style="color: var(--burgundy); font-weight: 600; line-height: 1.6;" id="loadingText">
+                "With the blessings of Allah, your invitation is being prepared..."
+            </p>
+        </div>
+
+        <!-- SCENE 2: Envelope Video Animation -->
+        <div id="envelope-scene" onclick="playEnvelopeVideo()">
+            <img src="assets/images/wax-seal.jpg" alt="Wax Seal" class="seal-cover-full" id="sealCover" />
+            
+            <video id="envelopeVideo" class="envelope-video-full" playsinline preload="auto">
+                <source src="assets/videos/envelope-opening.mp4" type="video/mp4" />
+            </video>
+
+            <p class="tap-instruction" id="tapSealText">
+                انقر على الختم الشمعي لفتح بطاقة الدعوة
+            </p>
+        </div>
+
+        <!-- SCENE 3: Main Invitation -->
+        <div id="main-content">
+            
+            <!-- 9:16 Main Hero Banner -->
+            <div class="hero-banner">
+                <div class="hero-banner-content">
+                    <!-- Quran Verse Section -->
+                    <div class="quran-verse" id="quranText">
+                        وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِّنْ أَنْفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
+                    </div>
+                    <div style="font-size: 0.85rem; color: var(--text-muted); font-style: italic; margin-top: 6px;" id="quranTrans">
+                        "And among His signs is that He created for you wives from your own kind, that you may find peace with them, and He created between you mutual love and mercy."
+                    </div>
+                    <p style="font-size: 0.75rem; color: var(--gold-dark); margin-top: 4px;">[Surah Ar-Rum: 21]</p>
+
+                    <div class="gold-line" style="margin: 15px auto;"></div>
+
+                    <!-- Hadith Section -->
+                    <p style="color: var(--burgundy); font-weight: bold; margin-bottom: 4px; font-size: 0.95rem;">قال رسول الله ﷺ</p>
+                    <p style="font-size: 0.95rem; color: var(--text-main);" id="hadithText">
+                        "خَيْرُكُمْ خَيْرُكُمْ لِأَهْلِهِ، وَأَنَا خَيْرُكُمْ لِأَهْلِي"
+                    </p>
+                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 3px;">(Sahih al-Bukhari)</p>
+                </div>
+            </div>
+
+            <!-- Flower Divider Placed Directly Below Main Banner -->
+            <div class="flower-divider-wrapper below-banner">
+                <img src="assets/images/flower-divider.png" alt="Flower Divider" class="flower-divider-img">
+            </div>
+
+            <!-- Couple Section -->
+            <div class="landing-section couple-section">
+                <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.8;" id="invitationIntro">
+                    With the infinite blessings of Allah SWT & Sunnah of our Prophet Muhammad ﷺ, we cordially invite you to the Nikah & Baraat of:
+                </p>
+                
+                <div style="margin: 25px 0;">
+                    <h1 class="couple-names">Raashida Ansari</h1>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);" id="brideParents">Daughter of Azaz & Talat Ansari</p>
+                    
+                    <div style="color: var(--gold); margin: 15px 0;"><i class="fa-solid fa-heart"></i></div>
+                    
+                    <h1 class="couple-names">Aawez Khan</h1>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);" id="groomParents">Son of Liyaqat & Anjum Khan</p>
+                </div>
+
+                <!-- Flower Divider Image Placed Directly Below Couple Names -->
+                <div class="flower-divider-wrapper">
+                    <img src="assets/images/flower-divider.png" alt="Flower Divider" class="flower-divider-img">
+                </div>
+
+                <!-- Scratch Reveal Date Instruction (Boti Fade In) -->
+                <p class="fade-in-element delay-1" style="font-size: 0.85rem; color: var(--burgundy); font-weight: bold; margin-top: 20px;" id="scratchInstruction">
+                    ✨ قم بالمسح على الكرت أدناه لكشف تاريخ الزفاف:
+                </p>
+                
+                <!-- 4 Scratch Circles (Boti Fade In) -->
+                <div class="scratch-circles-grid fade-in-element delay-2">
+                    <!-- Day Circle -->
+                    <div class="scratch-circle-item">
+                        <div class="scratch-circle-content">
+                            <span class="scratch-val">27</span>
+                            <span class="scratch-lbl" id="lblScratchDay">اليوم</span>
+                        </div>
+                        <canvas class="scratch-circle-canvas" data-label="اليوم"></canvas>
+                    </div>
+
+                    <!-- Month Circle -->
+                    <div class="scratch-circle-item">
+                        <div class="scratch-circle-content">
+                            <span class="scratch-val">11</span>
+                            <span class="scratch-lbl" id="lblScratchMonth">الشهر</span>
+                        </div>
+                        <canvas class="scratch-circle-canvas" data-label="الشهر"></canvas>
+                    </div>
+
+                    <!-- Year Circle -->
+                    <div class="scratch-circle-item">
+                        <div class="scratch-circle-content">
+                            <span class="scratch-val">2026</span>
+                            <span class="scratch-lbl" id="lblScratchYear">السنة</span>
+                        </div>
+                        <canvas class="scratch-circle-canvas" data-label="السنة"></canvas>
+                    </div>
+
+                    <!-- Time Circle -->
+                    <div class="scratch-circle-item">
+                        <div class="scratch-circle-content">
+                            <span class="scratch-val">07:00</span>
+                            <span class="scratch-lbl" id="lblScratchTime">الساعة</span>
+                        </div>
+                        <canvas class="scratch-circle-canvas" data-label="الساعة"></canvas>
+                    </div>
+                </div>
+
+                <!-- Countdown (Boti Fade In) -->
+                <div class="fade-in-element delay-3" style="margin-top: 30px;">
+                    <p style="font-size: 0.9rem; font-weight: 600; color: var(--burgundy);" id="countdownTitle">العد التنازلي للمناسبة</p>
+                    <div class="countdown-grid">
+                        <div class="timer-box"><div style="font-size: 1.4rem; font-weight: bold;" id="cDays">00</div><div style="font-size: 0.75rem;" id="lblDays">أيام</div></div>
+                        <div class="timer-box"><div style="font-size: 1.4rem; font-weight: bold;" id="cHours">00</div><div style="font-size: 0.75rem;" id="lblHours">ساعات</div></div>
+                        <div class="timer-box"><div style="font-size: 1.4rem; font-weight: bold;" id="cMins">00</div><div style="font-size: 0.75rem;" id="lblMins">دقائق</div></div>
+                        <div class="timer-box"><div style="font-size: 1.4rem; font-weight: bold;" id="cSecs">00</div><div style="font-size: 0.75rem;" id="lblSecs">ثواني</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gold-line"></div>
+
+            <!-- Venue & Location Section -->
+            <div class="landing-section">
+                <!-- Gazebo Illustration Image Placed Directly Above Venue Header -->
+                <img src="assets/images/gazebo.png" alt="Venue Gazebo" class="gazebo-img">
+
+                <h3 style="color: var(--burgundy); margin-bottom: 15px;" id="venueHeader"><i class="fa-solid fa-mosque"></i> موقع الحفل والقاعة</h3>
+                
+                <h4 style="color: var(--burgundy);">Nikah & Baraat Ceremony</h4>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 6px; line-height: 1.6;">
+                    Maharaja Banquet Hall, 6th Floor, Ghodbunder Road, Thane West, 400601
+                </p>
+
+                <!-- Venue QR Code Image -->
+                <img src="assets/images/venue-qr.png" alt="Scan for Venue Map" class="qr-code-img" onerror="this.style.display='none'">
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 15px;">Scan QR Code for Location</p>
+
+                <a href="https://maps.google.com" target="_blank" class="btn-action">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    <span id="mapBtnText">فتح الموقع في خرائط Google</span>
+                </a>
+            </div>
+
+            <div class="gold-line"></div>
+
+            <!-- RSVP Section -->
+            <div class="landing-section">
+                <!-- Wedding Cake Image Placed Directly Above RSVP Section Header -->
+                <img src="assets/images/wedding-cake.png" alt="Wedding Cake" class="cake-img">
+
+                <h3 style="color: var(--burgundy); margin-bottom: 20px;" id="rsvpTitle">تأكيد الحضور (RSVP)</h3>
+                <form id="rsvpForm" onsubmit="handleRSVP(event)">
+                    <div class="form-group">
+                        <label style="font-size:0.85rem; color:var(--burgundy);" id="lblGuestName">الاسم الكريم:</label>
+                        <input type="text" class="form-input" required placeholder="أدخل اسمك">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size:0.85rem; color:var(--burgundy);" id="lblGuestCount">عدد المرافقين:</label>
+                        <select class="form-select"><option>1</option><option>2</option><option>3</option><option>4+</option></select>
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size:0.85rem; color:var(--burgundy);" id="lblAttend">هل ستحضر المناسبة؟</label>
+                        <select class="form-select">
+                            <option id="optYes">نعم، يشرفني الحضور</option>
+                            <option id="optNo">أعتذر عن الحضور</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-action" id="btnSubmitRsvp">إرسال التأكيد</button>
+                </form>
+                <div id="rsvpSuccess" style="display:none; color: green; font-weight: bold; margin-top: 15px;">
+                    JazakAllahu Khair for your response!
+                </div>
+            </div>
+
+            <div class="gold-line"></div>
+
+            <!-- Contact Section -->
+            <div class="landing-section">
+                <!-- Vintage Phone Illustration Image Placed Directly Above Contact Section Header -->
+                <img src="assets/images/vintage-phone.png" alt="Vintage Telephone" class="phone-img">
+
+                <h4 style="color: var(--burgundy); margin-bottom: 15px;" id="contactTitle">للتواصل واستفسار</h4>
+                <div style="display: flex; justify-content: space-around; align-items: center; padding: 10px 0;">
+                    <div>
+                        <strong>Azaz Ansari</strong>
+                        <p style="font-size: 0.75rem; color: var(--text-muted);">Father of Bride</p>
+                    </div>
+                    <a href="tel:+918451916110" style="color: var(--burgundy); font-weight: bold; text-decoration: none;">
+                        <i class="fa-solid fa-phone"></i> +91 8451916110
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer-note">
+                <p style="font-size: 0.95rem; margin-bottom: 8px;">"And among His blessings is bringing hearts together."</p>
+                <p style="font-size: 0.85rem; opacity: 0.8;">We look forward to celebrating with you, In shā' Allāh.</p>
+                <p style="margin-top: 15px; font-weight: bold; color: var(--gold-light);">The Ansari Family</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            en: {
+                selectLang: "Choose Your Preferred Language",
+                openInvite: "Open Invitation",
+                loadingText: "With the blessings of Allah, your invitation is being prepared...",
+                tapSeal: "Tap the wax seal to open invitation",
+                duaTitle: "Dua for the Couple",
+                duaText: "“May Allah bless you, shower His blessings upon you, and unite you both in goodness.”",
+                quran: "And among His signs is that He created for you wives from your own kind, that you may find peace with them, and He created between you mutual love and mercy.",
+                hadith: "The best of you are those who are best to their families (wives), and I am the best of you to my family.",
+                intro: "With the infinite blessings of Allah SWT & Sunnah of our beloved Prophet Muhammad ﷺ, we cordially invite you to the Nikah & Baraat of:",
+                scratchText: "✨ Scratch below to reveal the wedding date:",
+                countdown: "Countdown to the Event",
+                days: "Days", hours: "Hours", mins: "Mins", secs: "Secs",
+                venue: "Venue & Location",
+                mapBtn: "Open Directions in Google Maps",
+                rsvpTitle: "RSVP Response",
+                name: "Guest Name:", count: "Number of Guests:", attend: "Will you attend?", submit: "Submit RSVP",
+                yes: "Yes, I will attend", no: "Sorry, I cannot attend",
+                contact: "Family Contact",
+                scratchDay: "Day", scratchMonth: "Month", scratchYear: "Year", scratchTime: "Time"
+            },
+            ur: {
+                selectLang: "اپنی پسندیدہ زبان منتخب کریں",
+                openInvite: "دعوت نامہ کھولیں",
+                loadingText: "اللہ کے فضل سے، آپ کا دعوت نامہ تیار کیا جا رہا ہے...",
+                tapSeal: "دعوت نامہ کھولنے کے لیے سيل پر ٹیپ کریں",
+                duaTitle: "جوڑے کے لیے دعا",
+                duaText: "”اللہ آپ کو برکت دے، آپ پر برکت نازل فرمائے اور آپ دونوں کو خیر میں اکٹھا کرے۔“",
+                quran: "اور اس کی نشانیوں میں سے ہے کہ اس نے تمہارے لیے تمہاری ہی جنس سے جوڑے بنائے تاکہ تم ان سے سکون حاصل کرو۔",
+                hadith: "تم میں سے بہترین شخص وہ ہے جو اپنے گھر والوں کے لیے بہترین ہے۔",
+                intro: "اللہ تعالی کے فضل و کرم اور سنت رسول ﷺ کے مطابق، ہم آپ کو نکاح و بارات کی تقریب میں شرکت کی پرخلوص دعوت دیتے ہیں:",
+                scratchText: "✨ شادی کی تاریخ دیکھنے کے لیے نیچے سکریچ کریں:",
+                countdown: "تقریب کا الٹی گنتی",
+                days: "دن", hours: "گھنٹے", mins: "منٹ", secs: "سیکنڈ",
+                venue: "مقام اور پتہ",
+                mapBtn: "گوگل نقشے پر راستہ دیکھیں",
+                rsvpTitle: "تائید آمد (RSVP)",
+                name: "مہمان کا نام:", count: "مہمانوں کی تعداد:", attend: "کیا آپ شرکت کریں گے؟", submit: "ارسال کریں",
+                yes: "جی ہاں، میں شرکت کروں گا", no: "معذرت، میں شرکت نہیں کر سکوں گا",
+                contact: "رابطہ برائے معلومات",
+                scratchDay: "دن", scratchMonth: "مہینہ", scratchYear: "سال", scratchTime: "وقت"
+            },
+            hi: {
+                selectLang: "अपनी पसंदीदा भाषा चुनें",
+                openInvite: "निमंत्रण खोलें",
+                loadingText: "अल्लाह के आशीर्वाद से आपका निमंत्रण पत्र तैयार किया जा रहा है...",
+                tapSeal: "निमंत्रण खोलने के लिए सील पर टैप करें",
+                duaTitle: "दंपति के लिए दुआ",
+                duaText: "“अल्लाह आपको बरकत दे और आप दोनों को खुशियों के साथ बनाए रखे।”",
+                quran: "और उसकी निशानियों में से है कि उसने आपके लिए आपकी ही जाति से जोड़े बनाए ताकि आप शांति पाओ।",
+                hadith: "तुममें से सबसे अच्छा वह है जो अपने परिवार के लिए सबसे अच्छा है।",
+                intro: "अल्लाह के आशीर्वाद और सुन्नत के साथ, हम आपको निकाह और बारात के शुभ अवसर पर आमंत्रित करते हैं:",
+                scratchText: "✨ शादी की तारीख देखने के लिए नीचे स्क्रैच करें:",
+                countdown: "कार्यक्रम की उल्टी गिनती",
+                days: "दिन", hours: "घंटे", मिनट: "मिनट", secs: "सेकंड",
+                venue: "स्थान और पता",
+                mapBtn: "गूगल मैप्स पर दिशा-निर्देश देखें",
+                rsvpTitle: "उपस्थिति की पुष्टि (RSVP)",
+                name: "अतिथि का नाम:", count: "अतिथियों की संख्या:", attend: "क्या आप शामिल होंगे?", submit: "सबमिट करें",
+                yes: "हाँ, मैं शामिल होऊँगा", no: "क्षमा करें, मैं शामिल नहीं हो पाऊँगा",
+                contact: "परिवार से संपर्क करें",
+                scratchDay: "दिन", scratchMonth: "महीना", scratchYear: "साल", scratchTime: "समय"
+            },
+            ar: {
+                selectLang: "اختر اللغة المفضلة",
+                openInvite: "فتح الدعوة",
+                loadingText: "برعاية الله وبركته، يتم إعداد دعوة الفرح الخاصة بك...",
+                tapSeal: "انقر على الختم الشمعي لفتح بطاقة الدعوة",
+                duaTitle: "دعاء للعروسين",
+                duaText: "“اللَّهُمَّ بَارِكْ لَهُمَا وَبَارِكْ عَلَيْهِمَا وَاجْمَعْ بَيْنَهُمَا فِي خَيْرٍ”",
+                quran: "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِّنْ أَنْفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً",
+                hadith: "خَيْرُكُمْ خَيْرُكُمْ لِأَهْلِهِ، وَأَنَا خَيْرُكُمْ لِأَهْلِي",
+                intro: "بفضل الله تعالى وعلى سنة رسوله الكريم ﷺ، نتشرف بدعوتكم لحضور حفل زفاف وبارات العروسين:",
+                scratchText: "✨ قم بالمسح على الكرت أدناه لكشف تاريخ الزفاف:",
+                countdown: "العد التنازلي للمناسبة",
+                days: "أيام", hours: "ساعات", mins: "دقائق", secs: "ثواني",
+                venue: "موقع الحفل والقاعة",
+                mapBtn: "فتح الموقع على خرائط Google",
+                rsvpTitle: "تأكيد الحضور (RSVP)",
+                name: "الاسم الكريم:", count: "عدد المرافقين:", attend: "هل ستحضر المناسبة؟", submit: "إرسال التأكيد",
+                yes: "نعم، يشرفني الحضور", no: "أعتذر عن الحضور",
+                contact: "للتواصل مع العائلة",
+                scratchDay: "اليوم", scratchMonth: "الشهر", scratchYear: "السنة", scratchTime: "الساعة"
+            }
+        };
+
+        function selectLanguage(lang) {
+            document.documentElement.setAttribute('data-lang', lang);
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+            
+            document.getElementById('openInviteBtn').classList.add('show');
+
+            const t = translations[lang];
+            document.getElementById('selectLangText').innerText = t.selectLang;
+            document.getElementById('openInviteText').innerText = t.openInvite;
+            document.getElementById('loadingText').innerText = t.loadingText;
+            document.getElementById('tapSealText').innerText = t.tapSeal;
+            document.getElementById('duaModalTitle').innerText = t.duaTitle;
+            document.getElementById('duaModalText').innerText = t.duaText;
+            document.getElementById('quranText').innerText = t.quran;
+            document.getElementById('hadithText').innerText = t.hadith;
+            document.getElementById('invitationIntro').innerText = t.intro;
+            document.getElementById('scratchInstruction').innerText = t.scratchText;
+            document.getElementById('countdownTitle').innerText = t.countdown;
+            
+            document.getElementById('lblDays').innerText = t.days;
+            document.getElementById('lblHours').innerText = t.hours;
+            document.getElementById('lblMins').innerText = t.mins;
+            document.getElementById('lblSecs').innerText = t.secs;
+
+            document.getElementById('lblScratchDay').innerText = t.scratchDay;
+            document.getElementById('lblScratchMonth').innerText = t.scratchMonth;
+            document.getElementById('lblScratchYear').innerText = t.scratchYear;
+            document.getElementById('lblScratchTime').innerText = t.scratchTime;
+
+            document.getElementById('venueHeader').innerText = t.venue;
+            document.getElementById('mapBtnText').innerText = t.mapBtn;
+            document.getElementById('rsvpTitle').innerText = t.rsvpTitle;
+            document.getElementById('lblGuestName').innerText = t.name;
+            document.getElementById('lblGuestCount').innerText = t.count;
+            document.getElementById('lblAttend').innerText = t.attend;
+            document.getElementById('btnSubmitRsvp').innerText = t.submit;
+            document.getElementById('optYes').innerText = t.yes;
+            document.getElementById('optNo').innerText = t.no;
+            document.getElementById('contactTitle').innerText = t.contact;
+        }
+
+        function startLoadingTransition() {
+            const loading = document.getElementById('loadingScreen');
+            loading.classList.add('active');
+            toggleAudio(true);
+
+            setTimeout(() => {
+                loading.classList.remove('active');
+                document.getElementById('scene1').style.display = 'none';
+                document.getElementById('envelope-scene').style.display = 'block';
+            }, 2500);
+        }
+
+        function playEnvelopeVideo() {
+            const scene = document.getElementById('envelope-scene');
+            const video = document.getElementById('envelopeVideo');
+
+            if (scene.classList.contains('playing')) return;
+
+            scene.classList.add('playing');
+
+            video.play().then(() => {
+                video.onended = () => {
+                    scene.style.display = 'none';
+                    const main = document.getElementById('main-content');
+                    main.style.display = 'block';
+                    setTimeout(() => { main.style.opacity = '1'; }, 50);
+                    initScratchCard();
+                    initScrollAnimations();
+                };
+            }).catch(err => {
+                console.error("خطأ في تشغيل الفيديو:", err);
+                scene.style.display = 'none';
+                const main = document.getElementById('main-content');
+                main.style.display = 'block';
+                setTimeout(() => { main.style.opacity = '1'; }, 50);
+                initScratchCard();
+                initScrollAnimations();
+            });
+        }
+
+        /* Scroll Observer Function for Slow & Smooth Fade-In Effect */
+        function initScrollAnimations() {
+            const fadeElements = document.querySelectorAll('.fade-in-element');
+            const appContainer = document.getElementById('app');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                root: appContainer,
+                threshold: 0.15
+            });
+
+            fadeElements.forEach(el => observer.observe(el));
+        }
+
+        function initScratchCard() {
+            const canvases = document.querySelectorAll('.scratch-circle-canvas');
+            
+            canvases.forEach(canvas => {
+                const ctx = canvas.getContext('2d');
+                const size = canvas.offsetWidth;
+                canvas.width = size;
+                canvas.height = size;
+
+                // Fill with Light Brown Color
+                ctx.fillStyle = '#A67C52';
+                ctx.beginPath();
+                ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Scratch Overlay Text
+                ctx.fillStyle = '#FFFFFF';
+                ctx.font = 'bold 11px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                const labelText = canvas.getAttribute('data-label') || 'اكشط';
+                ctx.fillText(labelText, size / 2, size / 2);
+
+                let isDrawing = false;
+
+                function scratch(e) {
+                    if (!isDrawing) return;
+                    e.preventDefault();
+                    const rect = canvas.getBoundingClientRect();
+                    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                    
+                    const x = clientX - rect.left;
+                    const y = clientY - rect.top;
+
+                    ctx.globalCompositeOperation = 'destination-out';
+                    ctx.beginPath();
+                    ctx.arc(x, y, 12, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                canvas.addEventListener('mousedown', (e) => { isDrawing = true; scratch(e); });
+                canvas.addEventListener('mouseup', () => isDrawing = false);
+                canvas.addEventListener('mouseleave', () => isDrawing = false);
+                canvas.addEventListener('mousemove', scratch);
+
+                canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); }, { passive: false });
+                canvas.addEventListener('touchend', () => isDrawing = false);
+                canvas.addEventListener('touchmove', scratch, { passive: false });
+            });
+        }
+
+        let isPlaying = false;
+        function toggleAudio(forcePlay = false) {
+            const audio = document.getElementById('bgAudio');
+            const btn = document.getElementById('audioToggle');
+
+            if (forcePlay || !isPlaying) {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    btn.classList.add('playing');
+                }).catch(() => {});
+            } else {
+                audio.pause();
+                isPlaying = false;
+                btn.classList.remove('playing');
+            }
+        }
+
+        function openDuaModal() { document.getElementById('duaModal').classList.add('active'); }
+        function closeDuaModal() { document.getElementById('duaModal').classList.remove('active'); }
+
+        function handleRSVP(e) {
+            e.preventDefault();
+            document.getElementById('rsvpForm').style.display = 'none';
+            document.getElementById('rsvpSuccess').style.display = 'block';
+        }
+
+        function createPetals() {
+            const container = document.getElementById('petals-container');
+            for(let i=0; i<15; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.width = Math.random() * 12 + 8 + 'px';
+                petal.style.height = Math.random() * 12 + 8 + 'px';
+                petal.style.left = Math.random() * 100 + '%';
+                petal.style.animationDelay = Math.random() * 8 + 's';
+                petal.style.animationDuration = Math.random() * 5 + 6 + 's';
+                container.appendChild(petal);
+            }
+        }
+        createPetals();
+
+        const targetDate = new Date("November 27, 2026 19:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+
+            if (diff > 0) {
+                document.getElementById('cDays').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+                document.getElementById('cHours').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+                document.getElementById('cMins').innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+                document.getElementById('cSecs').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
