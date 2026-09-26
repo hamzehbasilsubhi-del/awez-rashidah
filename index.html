@@ -167,9 +167,9 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
+            justify-content: space-between;
             align-items: center;
-            padding: 40px 20px 80px;
+            padding: 40px 20px;
             position: relative;
             text-align: center;
             background-image: url('assets/images/first-page-bg.jpg');
@@ -178,11 +178,21 @@
             background-repeat: no-repeat;
         }
 
-        .scene1-content {
-            width: 100%;
-            margin-top: auto;
-            padding-top: 120px;
+        .bismillah-img {
+            width: 75%;
+            max-width: 220px;
+            height: auto;
+            margin-top: 130px; 
+            filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.5));
+            animation: fadeInFromRight 3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
+
+        @keyframes fadeInFromRight {
+            0% { opacity: 0; transform: translateX(50px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        .scene1-content { width: 100%; margin: auto 0; }
 
         .gold-line {
             height: 1px;
@@ -191,7 +201,6 @@
             margin: 25px auto;
         }
 
-        /* Language options centered and narrower */
         .lang-options {
             width: 100%;
             max-width: 280px;
@@ -237,6 +246,7 @@
             pointer-events: none;
             transition: all 0.3s ease;
             margin-top: 25px;
+            margin-bottom: 20px;
         }
         .btn-primary.show {
             opacity: 1;
@@ -331,7 +341,7 @@
         /* 9:16 Banner Section */
         .hero-banner {
             width: 100%;
-            aspect-ratio: 9 / 16;
+            min-height: 100vh;
             background-image: linear-gradient(rgba(250, 246, 240, 0.15), rgba(250, 246, 240, 0.35)), url('assets/images/main-banner.jpg');
             background-size: cover;
             background-position: center;
@@ -339,19 +349,29 @@
             display: flex;
             justify-content: center;
             align-items: flex-end;
-            padding: 30px 20px 40px 20px;
+            padding: 40px 20px 40px 20px;
             text-align: center;
             position: relative;
         }
 
         .hero-banner-content {
             width: 100%;
-            max-width: 85%;
+            max-width: 95%;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-end;
+        }
+
+        .quran-frame-img {
+            width: 140px;
+            max-width: 60%;
+            height: auto;
+            margin: 0 auto 5px auto;
+            display: block;
+            filter: drop-shadow(0px 3px 6px rgba(88, 17, 26, 0.2));
+            transform: translateY(-35px);
         }
 
         /* Landing Section */
@@ -366,7 +386,6 @@
             padding-top: 10px;
         }
 
-        /* Flower Divider Styling */
         .flower-divider-wrapper {
             width: 100%;
             display: flex;
@@ -391,7 +410,24 @@
             filter: drop-shadow(0px 4px 8px rgba(88, 17, 26, 0.15));
         }
 
-        /* Gazebo Venue Illustration Styling */
+        .calendar-header-img {
+            width: 180px;
+            max-width: 65%;
+            height: auto;
+            margin: 30px auto 12px auto;
+            display: block;
+            filter: drop-shadow(0px 6px 12px rgba(88, 17, 26, 0.15));
+        }
+
+        .mosque-header-img {
+            width: 130px;
+            max-width: 48%;
+            height: auto;
+            margin: 0 auto 12px auto;
+            display: block;
+            filter: drop-shadow(0px 6px 12px rgba(88, 17, 26, 0.15));
+        }
+
         .gazebo-img {
             width: 140px;
             max-width: 50%;
@@ -401,7 +437,6 @@
             filter: drop-shadow(0px 6px 12px rgba(88, 17, 26, 0.15));
         }
 
-        /* Wedding Cake Illustration Styling */
         .cake-img {
             width: 150px;
             max-width: 55%;
@@ -411,7 +446,6 @@
             filter: drop-shadow(0px 6px 12px rgba(88, 17, 26, 0.15));
         }
 
-        /* Vintage Phone Illustration Styling */
         .phone-img {
             width: 130px;
             max-width: 48%;
@@ -421,13 +455,13 @@
             filter: drop-shadow(0px 6px 12px rgba(88, 17, 26, 0.15));
         }
 
-        .quran-verse {
-            font-size: 1.15rem;
+        .spiritual-text {
+            font-size: 0.9rem;
             color: var(--burgundy);
-            line-height: 1.9;
+            line-height: 1.8;
+            margin-bottom: 8px;
         }
 
-        /* Luxurious Handwriting Font for Couple Names */
         .couple-names {
             font-family: var(--font-script), var(--font-handwriting-ar), cursive;
             font-size: 3.2rem;
@@ -438,12 +472,16 @@
             text-shadow: 0px 2px 4px rgba(88, 17, 26, 0.15);
         }
 
-        /* --- Slow & Smooth Scroll Fade-In Animation --- */
+        /* Fade Animations */
         .fade-in-element {
             opacity: 0;
             transform: translateY(40px);
-            transition: opacity 1.4s cubic-bezier(0.25, 1, 0.5, 1), transform 1.4s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
             will-change: opacity, transform;
+        }
+
+        .fade-in-element.slow-fade {
+            transition: opacity 1.8s cubic-bezier(0.25, 1, 0.5, 1), transform 1.8s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .fade-in-element.visible {
@@ -451,12 +489,13 @@
             transform: translateY(0);
         }
 
-        /* Delays for Staggered Effect */
         .delay-1 { transition-delay: 0.1s; }
-        .delay-2 { transition-delay: 0.35s; }
-        .delay-3 { transition-delay: 0.6s; }
+        .delay-2 { transition-delay: 0.25s; }
+        .delay-3 { transition-delay: 0.4s; }
+        .delay-4 { transition-delay: 0.55s; }
+        .delay-5 { transition-delay: 0.7s; }
 
-        /* Scratch Card Component - 4 Circles Design */
+        /* Scratch Card */
         .scratch-circles-grid {
             display: flex;
             justify-content: center;
@@ -491,17 +530,8 @@
             background: #ffffff;
         }
 
-        .scratch-val {
-            font-size: 1rem;
-            font-weight: bold;
-            line-height: 1.1;
-        }
-
-        .scratch-lbl {
-            font-size: 0.65rem;
-            color: var(--text-muted);
-            margin-top: 2px;
-        }
+        .scratch-val { font-size: 1rem; font-weight: bold; line-height: 1.1; }
+        .scratch-lbl { font-size: 0.65rem; color: var(--text-muted); margin-top: 2px; }
 
         .scratch-circle-canvas {
             position: absolute;
@@ -512,21 +542,167 @@
             border-radius: 50%;
         }
 
-        /* Countdown Grid */
-        .countdown-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-top: 20px;
-        }
-        .timer-box {
-            background: transparent;
-            color: var(--burgundy);
-            padding: 10px 5px;
-            border-bottom: 2px solid var(--gold);
+        /* Timeline / Program Details Styles */
+        .program-timeline {
+            position: relative;
+            margin: 20px 0 10px;
+            padding: 0 10px;
         }
 
-        /* Form Inputs */
+        .program-card {
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid var(--gold);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 6px 18px rgba(88, 17, 26, 0.06);
+            backdrop-filter: blur(4px);
+            position: relative;
+            text-align: center;
+        }
+
+        .program-icon-wrapper {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--burgundy), var(--burgundy-dark));
+            color: var(--gold-light);
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin: 0 auto 12px;
+            box-shadow: 0 4px 10px rgba(88, 17, 26, 0.2);
+        }
+
+        .program-title {
+            color: var(--burgundy);
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .program-time {
+            color: var(--gold-dark);
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .program-location {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        .timeline-connector {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: -5px 0 10px;
+            color: var(--gold);
+            font-size: 1.2rem;
+            animation: bounceArrow 2s infinite;
+        }
+
+        @keyframes bounceArrow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(5px); }
+        }
+
+        /* Circular Burgundy Countdown Design */
+        .countdown-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 25px;
+            direction: ltr;
+        }
+
+        .timer-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .timer-circle {
+            width: 65px;
+            height: 65px;
+            background-color: var(--burgundy);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 1.3rem;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(88, 17, 26, 0.25);
+            font-family: var(--font-en-head), sans-serif;
+        }
+
+        .timer-label {
+            font-size: 0.75rem;
+            color: var(--text-main);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* Family Blessings Section Styles */
+        .blessings-block {
+            padding: 10px 5px;
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+        }
+
+        .blessings-subhead {
+            color: var(--burgundy);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .blessings-quote {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .blessings-list {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0;
+        }
+
+        .blessings-list li {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+
+        .family-tree-img {
+            width: 140px;
+            max-width: 50%;
+            height: auto;
+            margin: 0 auto 15px auto;
+            display: block;
+            filter: drop-shadow(0px 6px 12px rgba(88, 17, 26, 0.15));
+        }
+
         .form-group { margin-bottom: 20px; text-align: right; }
         [dir="ltr"] .form-group { text-align: left; }
         .form-input, .form-select {
@@ -557,6 +733,59 @@
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
 
+        /* Contact Section Specific Styles (Without Rectangles) */
+        .contact-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 0;
+            margin-bottom: 25px;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .contact-name {
+            font-weight: bold;
+            color: var(--burgundy);
+            font-size: 1.3rem;
+            margin-bottom: 2px;
+        }
+
+        .contact-relation {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .contact-call-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--burgundy);
+            color: var(--gold-light);
+            text-decoration: none;
+            padding: 10px 24px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            direction: ltr;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(88, 17, 26, 0.2);
+        }
+
+        .contact-call-btn:active {
+            transform: scale(0.96);
+        }
+
         .qr-code-img {
             width: 130px;
             height: 130px;
@@ -565,14 +794,6 @@
             padding: 5px;
             border-radius: 8px;
             background: white;
-        }
-
-        .footer-note {
-            padding: 40px 20px 60px;
-            text-align: center;
-            background: var(--burgundy);
-            color: var(--gold-light);
-            margin-top: 40px;
         }
     </style>
 </head>
@@ -610,6 +831,8 @@
 
         <!-- SCENE 1: Language Selection -->
         <div id="scene1">
+            <img src="assets/images/bismillah.png" alt="Bismillah" class="bismillah-img">
+
             <div class="scene1-content">
                 <p style="font-weight: 600; color: var(--burgundy); margin-bottom: 20px;" id="selectLangText">
                     اختر اللغة المفضلة / Choose Language
@@ -644,7 +867,7 @@
         <div class="loading-screen" id="loadingScreen">
             <div class="spinner"></div>
             <p style="color: var(--burgundy); font-weight: 600; line-height: 1.6;" id="loadingText">
-                "With the blessings of Allah, your invitation is being prepared..."
+                "بفضل الله، يتم تجهيز دعوتك..."
             </p>
         </div>
 
@@ -667,23 +890,31 @@
             <!-- 9:16 Main Hero Banner -->
             <div class="hero-banner">
                 <div class="hero-banner-content">
-                    <!-- Quran Verse Section -->
-                    <div class="quran-verse" id="quranText">
-                        وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِّنْ أَنْفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
-                    </div>
-                    <div style="font-size: 0.85rem; color: var(--text-muted); font-style: italic; margin-top: 6px;" id="quranTrans">
-                        "And among His signs is that He created for you wives from your own kind, that you may find peace with them, and He created between you mutual love and mercy."
-                    </div>
-                    <p style="font-size: 0.75rem; color: var(--gold-dark); margin-top: 4px;">[Surah Ar-Rum: 21]</p>
+                    
+                    <img src="assets/images/quran-frame.png" alt="Quran Frame" class="quran-frame-img fade-in-element delay-1" onerror="this.style.display='none'">
 
-                    <div class="gold-line" style="margin: 15px auto;"></div>
+                    <div class="spiritual-text fade-in-element delay-2" id="verseText" style="font-size: 0.95rem; font-weight: bold; margin-bottom: 12px; line-height: 1.8;">
+                        ﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً إِنَّ فِي ذَلِكَ لَآيَاتٍ لِقَوْمٍ يَتَفَكَّرُونَ ﴾ <br><span style="font-size: 0.8rem; font-weight: normal; color: var(--text-muted);">سورة الروم (21)</span>
+                    </div>
 
-                    <!-- Hadith Section -->
-                    <p style="color: var(--burgundy); font-weight: bold; margin-bottom: 4px; font-size: 0.95rem;">قال رسول الله ﷺ</p>
-                    <p style="font-size: 0.95rem; color: var(--text-main);" id="hadithText">
-                        "خَيْرُكُمْ خَيْرُكُمْ لِأَهْلِهِ، وَأَنَا خَيْرُكُمْ لِأَهْلِي"
+                    <div class="spiritual-text fade-in-element delay-3" id="hadithText" style="font-size: 0.9rem; margin-bottom: 15px; line-height: 1.7;">
+                        قال رسول الله -صلى الله عليه وسلم-: «خيرُكم خيرُكم لأهله، وأنا خيرُكم لأهلي»
+                    </div>
+
+                    <div class="gold-line fade-in-element delay-3" style="margin: 10px auto;"></div>
+
+                    <div class="spiritual-text fade-in-element delay-4" id="spiritualText1">
+                        بفيض من نعم الله عز وجل واتباعاً لسنة نبينا الحبيب محمد ﷺ
+                    </div>
+                    <div class="spiritual-text fade-in-element delay-4" id="spiritualText2" style="font-size: 0.85rem; color: var(--text-muted);">
+                        وبالبركات الروحية (الفيض الروحاني) لحضرة حافظ محمد تقي (رحمه الله) وحضرة مولانا سيد قاسم (رحمه الله).
+                    </div>
+
+                    <div class="gold-line fade-in-element delay-4" style="margin: 10px auto;"></div>
+
+                    <p class="fade-in-element delay-5" style="font-size: 0.85rem; color: var(--burgundy); line-height: 1.7;" id="spiritualText3">
+                        "ببركة الله تعالى والتوجيه الروحي ودعوات شيخنا ومرشدنا الحبيب، السيد غلام رسول نقشبندي، وبحضور كبارنا وأفراد عائلتنا الكرام..."
                     </p>
-                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 3px;">(Sahih al-Bukhari)</p>
                 </div>
             </div>
 
@@ -694,77 +925,132 @@
 
             <!-- Couple Section -->
             <div class="landing-section couple-section">
-                <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.8;" id="invitationIntro">
-                    With the infinite blessings of Allah SWT & Sunnah of our Prophet Muhammad ﷺ, we cordially invite you to the Nikah & Baraat of:
+                <p class="fade-in-element slow-fade delay-1" style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.8;" id="invitationIntro">
+                    يتشرف كل من شمس الحق أنصاري، وأعزاز أحمد أنصاري، وطلعت قمر أنصاري بدعوتكم لتشريفنا بحضور حفل عقد القران ومراسم الزفاف لـ:
                 </p>
                 
-                <div style="margin: 25px 0;">
+                <div class="fade-in-element slow-fade delay-2" style="margin: 25px 0;">
                     <h1 class="couple-names">Raashida Ansari</h1>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);" id="brideParents">Daughter of Azaz & Talat Ansari</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);" id="brideParents">الابنة الغالية لأعزاز وطلعت أنصاري</p>
                     
                     <div style="color: var(--gold); margin: 15px 0;"><i class="fa-solid fa-heart"></i></div>
                     
                     <h1 class="couple-names">Aawez Khan</h1>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);" id="groomParents">Son of Liyaqat & Anjum Khan</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);" id="groomParents">الابن الغالي لياقت وأنجم خان</p>
                 </div>
 
-                <!-- Flower Divider Image Placed Directly Below Couple Names -->
-                <div class="flower-divider-wrapper">
-                    <img src="assets/images/flower-divider.png" alt="Flower Divider" class="flower-divider-img">
+                <div class="fade-in-element slow-fade delay-3" style="font-style: italic; color: var(--burgundy); font-weight: bold; margin: 15px 0 25px; font-size: 0.95rem;" id="blessingText">
+                    بارك الله لكما، وبارك عليكما، وجمع بينكما في خير
                 </div>
 
-                <!-- Scratch Reveal Date Instruction (Boti Fade In) -->
-                <p class="fade-in-element delay-1" style="font-size: 0.85rem; color: var(--burgundy); font-weight: bold; margin-top: 20px;" id="scratchInstruction">
+                <!-- calendar icon -->
+                <img src="assets/images/calendar-icon.png" alt="Calendar Icon" class="calendar-header-img fade-in-element delay-1" onerror="this.style.display='none'">
+
+                <!-- Scratch Reveal Date Instruction -->
+                <p class="fade-in-element delay-1" style="font-size: 0.85rem; color: var(--burgundy); font-weight: bold; margin-top: 10px;" id="scratchInstruction">
                     ✨ قم بالمسح على الكرت أدناه لكشف تاريخ الزفاف:
                 </p>
                 
-                <!-- 4 Scratch Circles (Boti Fade In) -->
+                <!-- 4 Scratch Circles -->
                 <div class="scratch-circles-grid fade-in-element delay-2">
-                    <!-- Day Circle -->
                     <div class="scratch-circle-item">
                         <div class="scratch-circle-content">
                             <span class="scratch-val">27</span>
                             <span class="scratch-lbl" id="lblScratchDay">اليوم</span>
                         </div>
-                        <canvas class="scratch-circle-canvas" data-label="اليوم"></canvas>
+                        <canvas class="scratch-circle-canvas" id="canvasDay" data-type="scratchDay"></canvas>
                     </div>
 
-                    <!-- Month Circle -->
                     <div class="scratch-circle-item">
                         <div class="scratch-circle-content">
                             <span class="scratch-val">11</span>
                             <span class="scratch-lbl" id="lblScratchMonth">الشهر</span>
                         </div>
-                        <canvas class="scratch-circle-canvas" data-label="الشهر"></canvas>
+                        <canvas class="scratch-circle-canvas" id="canvasMonth" data-type="scratchMonth"></canvas>
                     </div>
 
-                    <!-- Year Circle -->
                     <div class="scratch-circle-item">
                         <div class="scratch-circle-content">
                             <span class="scratch-val">2026</span>
                             <span class="scratch-lbl" id="lblScratchYear">السنة</span>
                         </div>
-                        <canvas class="scratch-circle-canvas" data-label="السنة"></canvas>
+                        <canvas class="scratch-circle-canvas" id="canvasYear" data-type="scratchYear"></canvas>
                     </div>
 
-                    <!-- Time Circle -->
                     <div class="scratch-circle-item">
                         <div class="scratch-circle-content">
                             <span class="scratch-val">07:00</span>
                             <span class="scratch-lbl" id="lblScratchTime">الساعة</span>
                         </div>
-                        <canvas class="scratch-circle-canvas" data-label="الساعة"></canvas>
+                        <canvas class="scratch-circle-canvas" id="canvasTime" data-type="scratchTime"></canvas>
                     </div>
                 </div>
 
-                <!-- Countdown (Boti Fade In) -->
+                <!-- SECTION: Event Details Program -->
+                <div class="fade-in-element delay-3" id="eventDetailsSection" style="margin-top: 40px; width: 100%;">
+                    
+                    <img src="assets/images/mosque-icon.png" alt="Mosque Header" class="mosque-header-img fade-in-element delay-1" onerror="this.style.display='none'">
+
+                    <p class="fade-in-element delay-2" style="font-size: 1.2rem; font-weight: bold; color: var(--burgundy); margin-bottom: 15px;" id="eventDetailsTitle">
+                        تفاصيل الحفل
+                    </p>
+                    
+                    <div class="program-timeline fade-in-element delay-3">
+                        <!-- Nikah / Baraat Card -->
+                        <div class="program-card">
+                            <div class="program-icon-wrapper">
+                                <i class="fa-solid fa-mosque"></i>
+                            </div>
+                            <div class="program-title" id="pNikahTitle">عقد القران والزفاف</div>
+                            <div class="program-time" id="pNikahTime">
+                                <i class="fa-solid fa-clock"></i> <span>07:00 مساءً</span>
+                            </div>
+                            <div class="program-location" id="pNikahLoc">
+                                قاعة مهاراجا للاحتفالات، الطابق السادس، طريق غودبندر، ثين غرب، 400601
+                            </div>
+                        </div>
+
+                        <!-- Connector Animation -->
+                        <div class="timeline-connector">
+                            <i class="fa-solid fa-angle-down"></i>
+                        </div>
+
+                        <!-- Dinner Card -->
+                        <div class="program-card">
+                            <div class="program-icon-wrapper">
+                                <i class="fa-solid fa-utensils"></i>
+                            </div>
+                            <div class="program-title" id="pDinnerTitle">العشاء</div>
+                            <div class="program-time" id="pDinnerTime">
+                                <i class="fa-solid fa-clock"></i> <span>09:00 مساءً</span>
+                            </div>
+                            <div class="program-location" id="pDinnerLoc">
+                                السطح (Roof Top)، قاعة مهاراجا للاحتفالات، طريق غودبندر، ثين غرب، 400601
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Countdown Section -->
                 <div class="fade-in-element delay-3" style="margin-top: 30px;">
-                    <p style="font-size: 0.9rem; font-weight: 600; color: var(--burgundy);" id="countdownTitle">العد التنازلي للمناسبة</p>
+                    <p style="font-size: 1.1rem; font-weight: bold; color: var(--burgundy);" id="countdownTitle">بـــاقي على فـرحنــــــا</p>
                     <div class="countdown-grid">
-                        <div class="timer-box"><div style="font-size: 1.4rem; font-weight: bold;" id="cDays">00</div><div style="font-size: 0.75rem;" id="lblDays">أيام</div></div>
-                        <div class="timer-box"><div style="font-size: 1.4rem; font-weight: bold;" id="cHours">00</div><div style="font-size: 0.75rem;" id="lblHours">ساعات</div></div>
-                        <div class="timer-box"><div style="font-size: 1.4rem; font-weight: bold;" id="cMins">00</div><div style="font-size: 0.75rem;" id="lblMins">دقائق</div></div>
-                        <div class="timer-box"><div style="font-size: 1.4rem; font-weight: bold;" id="cSecs">00</div><div style="font-size: 0.75rem;" id="lblSecs">ثواني</div></div>
+                        <div class="timer-item">
+                            <div class="timer-circle" id="cDays">00</div>
+                            <div class="timer-label" id="lblDays">أيام</div>
+                        </div>
+                        <div class="timer-item">
+                            <div class="timer-circle" id="cHours">00</div>
+                            <div class="timer-label" id="lblHours">ساعات</div>
+                        </div>
+                        <div class="timer-item">
+                            <div class="timer-circle" id="cMins">00</div>
+                            <div class="timer-label" id="lblMins">دقائق</div>
+                        </div>
+                        <div class="timer-item">
+                            <div class="timer-circle" id="cSecs">00</div>
+                            <div class="timer-label" id="lblSecs">ثواني</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -773,7 +1059,6 @@
 
             <!-- Venue & Location Section -->
             <div class="landing-section">
-                <!-- Gazebo Illustration Image Placed Directly Above Venue Header -->
                 <img src="assets/images/gazebo.png" alt="Venue Gazebo" class="gazebo-img">
 
                 <h3 style="color: var(--burgundy); margin-bottom: 15px;" id="venueHeader"><i class="fa-solid fa-mosque"></i> موقع الحفل والقاعة</h3>
@@ -783,7 +1068,6 @@
                     Maharaja Banquet Hall, 6th Floor, Ghodbunder Road, Thane West, 400601
                 </p>
 
-                <!-- Venue QR Code Image -->
                 <img src="assets/images/venue-qr.png" alt="Scan for Venue Map" class="qr-code-img" onerror="this.style.display='none'">
                 <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 15px;">Scan QR Code for Location</p>
 
@@ -795,9 +1079,83 @@
 
             <div class="gold-line"></div>
 
+            <!-- FAMILY BLESSINGS SECTION -->
+            <div class="landing-section" id="familyBlessingsSection">
+                <img src="assets/images/family-tree.png" alt="Family Tree Icon" class="family-tree-img fade-in-element delay-1" onerror="this.style.display='none'">
+
+                <h3 class="fade-in-element delay-1" style="color: var(--burgundy); margin-bottom: 25px; font-size: 1.5rem;" id="blessingsMainTitle">
+                    <i class="fa-solid fa-hands-praying" style="color: var(--gold);"></i> بركات العائلة
+                </h3>
+
+                <!-- Block 1: Legacy & Elders -->
+                <div class="blessings-block fade-in-element delay-2">
+                    <div class="blessings-subhead" id="bSubhead1">إرثنا وبركاتنا</div>
+                    <p class="blessings-quote" id="bQuote1">
+                        "يترك كل جيل وراءه دعوات وقِيماً ومحبة. وبكل امتنان، نلتمس بركات كبارنا ونستذكر بمحبة أولئك الذين لا تزال ذكراهم حية في قلوبنا."
+                    </p>
+                    <p style="font-size: 0.9rem; font-weight: bold; color: var(--burgundy); margin-bottom: 10px;" id="bGrandparentsHeader">
+                        مع المحبة والدعوات والبركات من الأجداد والجدات:
+                    </p>
+                    <ul class="blessings-list" id="bGrandparentsList">
+                        <li><strong>شمس الحق أنصاري</strong> | <strong>زينب النساء أنصاري</strong></li>
+                        <li><strong>المرحوم مولانا محمد رفيق عزمي</strong> <span style="font-size:0.8rem; color:var(--text-muted);">(أسكنه الله الفردوس الأعلى - آمين)</span> | <strong>صدر النساء عزمي</strong></li>
+                    </ul>
+                </div>
+
+                <div class="gold-line" style="margin: 20px auto; width: 40%;"></div>
+
+                <!-- Block 2: Remembering Loved Ones -->
+                <div class="blessings-block fade-in-element delay-3">
+                    <div class="blessings-subhead" id="bSubhead2">استذكار أحبائنا من أفراد العائلة بمشاعر المحبة والدعاء</div>
+                    <ul class="blessings-list" id="bRememberList">
+                        <li>المرحوم نسيم أنور أنصاري</li>
+                        <li>المرحوم الدكتور مسعود عزمي</li>
+                        <li>المرحوم مشاهد عزمي</li>
+                    </ul>
+                    <p class="blessings-quote" style="margin-top: 10px;" id="bDuaDeceased">
+                        "نسأل الله أن يمنحهم أعلى درجات الجنة (الفردوس الأعلى) ويغمرهم برحمته الواسعة - آمين."
+                    </p>
+                </div>
+
+                <div class="gold-line" style="margin: 20px auto; width: 40%;"></div>
+
+                <!-- Block 3: Cherished Family -->
+                <div class="blessings-block fade-in-element delay-4">
+                    <div class="blessings-subhead" id="bSubhead3">عائلتنا الغالية</div>
+                    <p style="font-size: 0.95rem; color: var(--text-main); line-height: 1.8;" id="bCherishedText">
+                        بكل حب وامتنان، نتطلع للاحتفال بهذه المناسبة المباركة بصحبة أفراد عائلتنا وأقاربنا الأعزاء جميعاً.
+                    </p>
+                    <div style="margin: 15px 0; font-weight: bold; color: var(--burgundy);" id="bFamilyLove">
+                        • لمسة من حب العائلة • <br>
+                        <span style="font-size: 1.1rem; color: var(--gold-dark);" id="bAnsariFamily">مع المحبة من عائلة أنصاري</span>
+                    </div>
+                    <p class="blessings-quote" id="bQuoteStory">
+                        "لكل عائلة قصة؛ وقصتنا مبنية على الحب والإيمان والدعاء والترابط الأسري. نعرب عن عميق امتناننا لكل فرد من العائلة وقريب وصديق أضفت بركاتهم ودعواتهم معنىً خاصاً ومميزاً على هذه المناسبة السعيدة."
+                    </p>
+                </div>
+
+                <div class="gold-line" style="margin: 20px auto; width: 40%;"></div>
+
+                <!-- Block 4: Little Princesses -->
+                <div class="blessings-block fade-in-element delay-5">
+                    <div style="color: var(--gold-dark); font-size: 1.3rem; margin-bottom: 5px;"><i class="fa-solid fa-crown"></i></div>
+                    <div class="blessings-subhead" id="bSpecialMention">تحية خاصة</div>
+                    <p style="font-size: 0.95rem; color: var(--burgundy); font-weight: bold; margin-bottom: 8px;" id="bPrincessesHeader">
+                        مع وافر الحب لأميراتنا الصغيرات:
+                    </p>
+                    <p style="font-size: 1.1rem; font-weight: bold; color: var(--burgundy-dark); margin-bottom: 10px;" id="bPrincessesNames">
+                        جويرية آفاق &nbsp;|&nbsp; أميمة آصف
+                    </p>
+                    <p class="blessings-quote" id="bPrincessesDua">
+                        نسأل الله أن يرزقهن السعادة والصحة والعافية وحسن الخلق، وأن يكتب لهن مستقبلاً جميلاً مليئاً بالبركة - آمين.
+                    </p>
+                </div>
+            </div>
+
+            <div class="gold-line"></div>
+
             <!-- RSVP Section -->
             <div class="landing-section">
-                <!-- Wedding Cake Image Placed Directly Above RSVP Section Header -->
                 <img src="assets/images/wedding-cake.png" alt="Wedding Cake" class="cake-img">
 
                 <h3 style="color: var(--burgundy); margin-bottom: 20px;" id="rsvpTitle">تأكيد الحضور (RSVP)</h3>
@@ -826,34 +1184,79 @@
 
             <div class="gold-line"></div>
 
-            <!-- Contact Section -->
+            <!-- Contact Section (Without Rectangles) -->
             <div class="landing-section">
-                <!-- Vintage Phone Illustration Image Placed Directly Above Contact Section Header -->
                 <img src="assets/images/vintage-phone.png" alt="Vintage Telephone" class="phone-img">
 
-                <h4 style="color: var(--burgundy); margin-bottom: 15px;" id="contactTitle">للتواصل واستفسار</h4>
-                <div style="display: flex; justify-content: space-around; align-items: center; padding: 10px 0;">
-                    <div>
-                        <strong>Azaz Ansari</strong>
-                        <p style="font-size: 0.75rem; color: var(--text-muted);">Father of Bride</p>
+                <h4 style="color: var(--burgundy); margin-bottom: 25px; font-size: 1.4rem;" id="contactTitle">للتواصل واستفسار</h4>
+                
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <!-- Contact 1: Grandfather -->
+                    <div class="contact-card">
+                        <div class="contact-info">
+                            <div class="contact-name" id="cName1">شمس الحق أنصاري</div>
+                            <div class="contact-relation" id="cRel1">جد العروس</div>
+                        </div>
+                        <a href="tel:+919867804001" class="contact-call-btn">
+                            <i class="fa-solid fa-phone"></i> +91 9867804001
+                        </a>
                     </div>
-                    <a href="tel:+918451916110" style="color: var(--burgundy); font-weight: bold; text-decoration: none;">
-                        <i class="fa-solid fa-phone"></i> +91 8451916110
-                    </a>
+
+                    <!-- Contact 2: Father -->
+                    <div class="contact-card">
+                        <div class="contact-info">
+                            <div class="contact-name" id="cName2">أعزاز أنصاري</div>
+                            <div class="contact-relation" id="cRel2">والد العروس</div>
+                        </div>
+                        <a href="tel:+918451916110" class="contact-call-btn">
+                            <i class="fa-solid fa-phone"></i> +91 8451916110
+                        </a>
+                    </div>
+
+                    <!-- Contact 3: Brother -->
+                    <div class="contact-card">
+                        <div class="contact-info">
+                            <div class="contact-name" id="cName3">آفاق أنصاري</div>
+                            <div class="contact-relation" id="cRel3">شقيق العروس</div>
+                        </div>
+                        <a href="tel:+919029115459" class="contact-call-btn">
+                            <i class="fa-solid fa-phone"></i> +91 9029115459
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Footer -->
-            <div class="footer-note">
-                <p style="font-size: 0.95rem; margin-bottom: 8px;">"And among His blessings is bringing hearts together."</p>
-                <p style="font-size: 0.85rem; opacity: 0.8;">We look forward to celebrating with you, In shā' Allāh.</p>
-                <p style="margin-top: 15px; font-weight: bold; color: var(--gold-light);">The Ansari Family</p>
+            <div class="gold-line"></div>
+
+            <!-- CLOSING SECTION (الختام) -->
+            <div class="landing-section" id="closingSection">
+                <h3 style="color: var(--burgundy); margin-bottom: 20px; font-size: 1.4rem;" id="closingTitle">الختام</h3>
+                
+                <p style="font-size: 0.95rem; color: var(--text-main); line-height: 1.8; margin-bottom: 15px;" id="closingText1">
+                    شكراً لكونكم جزءاً عزيزاً من سعادتنا ولتذكركم عائلتنا في دعواتكم الغالية. جزاكم الله خيراً وفيراً وبارك فيكم دائماً.
+                </p>
+
+                <p style="font-size: 0.95rem; color: var(--text-main); line-height: 1.8; margin-bottom: 15px;" id="closingText2">
+                    نرجو منكم تذكر العروس والعريس والعائلتين في دعواتكم الطيبة. نسأل الله أن يبارك في هذا الزواج ويغمره بالحب والرحمة والسكينة. آمين.
+                </p>
+
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 5px;" id="closingRegards">مع خالص التحيات</p>
+                <p style="font-size: 1.1rem; font-weight: bold; color: var(--burgundy);" id="closingFamily1">عائلة الأنصاري</p>
+
+                <div class="gold-line" style="margin: 25px auto; width: 50%;"></div>
+
+                <p style="font-size: 1rem; color: var(--burgundy); line-height: 1.8; font-style: italic; margin-bottom: 10px;" id="closingVerse">
+                    "ومن آياته ونعمه أن ألّف بين القلوب.<br>نتطلع للاحتفال معكم، إن شاء الله."
+                </p>
+                <p style="font-size: 1.1rem; font-weight: bold; color: var(--gold-dark);" id="closingFamily2">عائلة الأنصاري</p>
             </div>
 
         </div>
     </div>
 
     <script>
+        let currentLang = 'ar';
+
         const translations = {
             en: {
                 selectLang: "Choose Your Preferred Language",
@@ -862,39 +1265,135 @@
                 tapSeal: "Tap the wax seal to open invitation",
                 duaTitle: "Dua for the Couple",
                 duaText: "“May Allah bless you, shower His blessings upon you, and unite you both in goodness.”",
-                quran: "And among His signs is that He created for you wives from your own kind, that you may find peace with them, and He created between you mutual love and mercy.",
-                hadith: "The best of you are those who are best to their families (wives), and I am the best of you to my family.",
-                intro: "With the infinite blessings of Allah SWT & Sunnah of our beloved Prophet Muhammad ﷺ, we cordially invite you to the Nikah & Baraat of:",
+                verse: "“And among His signs is that He created for you wives from your own kind, that you may find peace with them, and He created between you mutual love and mercy. Indeed, in these are signs for those who ponder.”<br><span style='font-size: 0.75rem; font-weight: normal; color: var(--text-muted);'>— Surah Ar-Rum (30:21)</span>",
+                hadith: "“The best of you are those who are best to their families (wives), and I am the best of you to my family.”<br><span style='font-size: 0.75rem; font-weight: normal; color: var(--text-muted);'>— Prophet Muhammad ﷺ (Authentic: Sahih al-Bukhari)</span>",
+                spiritual1: "With an abundance of Allah's blessings and following the Sunnah of our beloved Prophet Muhammad ﷺ",
+                spiritual2: "And with the spiritual blessings of Hadrat Hafiz Muhammad Taqi (RA) and Hadrat Maulana Syed Qasim (RA).",
+                spiritual3: "“With the grace of Almighty Allah, spiritual guidance, and prayers of our beloved Shaykh and Murshid, Sayyid Ghulam Rasul Naqshbandi, and in the presence of our elders and esteemed family members...”",
+                intro: "Shamsul Haq Ansari, Azaz Ahmed Ansari, and Talat Qamar Ansari cordially invite you to grace the Nikah and Baraat ceremony of:",
+                brideParents: "Daughter of Azaz & Talat Ansari",
+                groomParents: "Son of Liyaqat & Anjum Khan",
+                blessing: "May Allah bless you, shower His blessings upon you, and unite you both in goodness.",
                 scratchText: "✨ Scratch below to reveal the wedding date:",
+                
+                eventDetailsTitle: "Event Details",
+                pNikahTitle: "Nikah & Baraat Ceremony",
+                pNikahTime: "07:00 PM Onwards",
+                pNikahLoc: "Maharaja Banquet Hall, 6th Floor, Ghodbunder Road, Thane West, 400601",
+                pDinnerTitle: "Dinner",
+                pDinnerTime: "09:00 PM Onwards",
+                pDinnerLoc: "Roof Top, Maharaja Banquet Hall, Ghodbunder Road, Thane West, 400601",
+
                 countdown: "Countdown to the Event",
                 days: "Days", hours: "Hours", mins: "Mins", secs: "Secs",
+                
+                // Family Blessings (English)
+                blessingsMainTitle: "<i class=\"fa-solid fa-hands-praying\" style=\"color: var(--gold);\"></i> Family Blessings",
+                bSubhead1: "Our Legacy & Blessings",
+                bQuote1: "“Every generation leaves behind prayers, values and love. With gratitude, we seek the blessings of our elders and lovingly remember those who continue to live in our hearts.”",
+                bGrandparentsHeader: "With the Love, Du'as & Blessings of Grandparents:",
+                bGrandparentsList: "<li><strong>Shamsul Haque Ansari</strong> & <strong>Zaibunnisa Ansari</strong></li><li><strong>Marhoom Maulana Mohammed Rafique Azmi</strong> <span style=\"font-size:0.8rem; color:var(--text-muted);\">(May Allah grant him the highest ranks in Jannatul Firdaus. Āmeen.)</span> | <strong>Sadrunnisa Azmi</strong></li>",
+                bSubhead2: "Remembering Our Beloved Family Members with Love & Du'as",
+                bRememberList: "<li>Marhoom Naseem Anwar Ansari</li><li>Marhoom Dr. Masood Azmi</li><li>Marhoom Mushahid Azmi</li>",
+                bDuaDeceased: "“May Allah grant them the highest ranks in Jannatul Firdaus and envelop them in His infinite mercy. Āmeen.”",
+                bSubhead3: "Our Cherished Family",
+                bCherishedText: "With love and gratitude, we look forward to celebrating this blessed occasion in the company of our all-beloved family & relatives.",
+                bFamilyLove: "• A Little Family Love •<br><span style=\"font-size: 1.1rem; color: var(--gold-dark);\">With Love From The Ansari Family</span>",
+                bQuoteStory: "“Every family has a story. Ours is built on love, faith, prayers and togetherness. We are deeply grateful to every family member, relative and friend whose blessings have made this joyous occasion even more meaningful.”",
+                bSpecialMention: "A Special Mention",
+                bPrincessesHeader: "With lots of love to our little princesses:",
+                bPrincessesNames: "Juveria Aafaque &nbsp;|&nbsp; Umaimah Asif",
+                bPrincessesDua: "May Allah bless them with happiness, good health, righteous character and a beautiful future filled with barakah. Āmeen.",
+
                 venue: "Venue & Location",
                 mapBtn: "Open Directions in Google Maps",
                 rsvpTitle: "RSVP Response",
                 name: "Guest Name:", count: "Number of Guests:", attend: "Will you attend?", submit: "Submit RSVP",
                 yes: "Yes, I will attend", no: "Sorry, I cannot attend",
+                
+                // Contact Details Translation (English)
                 contact: "Family Contact",
+                cName1: "Shamsul Haque Ansari", cRel1: "Grandfather of Bride",
+                cName2: "Azaz Ansari", cRel2: "Father of Bride",
+                cName3: "Aafaq Ansari", cRel3: "Brother of Bride",
+
+                // Closing Section (English)
+                closingTitle: "Closing",
+                closingText1: "“Thank you for being a cherished part of our happiness and for keeping our family in your precious prayers. May Allah reward you abundantly and bless you always.”",
+                closingText2: "“We kindly ask you to remember the bride, the groom, and both families in your warm prayers. May Allah bless this marriage and fill it with love, mercy, and tranquility. Ameen.”",
+                closingRegards: "With warm regards,",
+                closingFamily1: "Al-Ansari Family",
+                closingVerse: "“And among His signs and blessings is that He united hearts.<br>We look forward to celebrating with you, Insha'Allah.”",
+                closingFamily2: "Al-Ansari Family",
                 scratchDay: "Day", scratchMonth: "Month", scratchYear: "Year", scratchTime: "Time"
             },
             ur: {
                 selectLang: "اپنی پسندیدہ زبان منتخب کریں",
                 openInvite: "دعوت نامہ کھولیں",
                 loadingText: "اللہ کے فضل سے، آپ کا دعوت نامہ تیار کیا جا رہا ہے...",
-                tapSeal: "دعوت نامہ کھولنے کے لیے سيل پر ٹیپ کریں",
+                tapSeal: "دعوت نامہ کھولنے کے لیے سیل پر ٹیپ کریں",
                 duaTitle: "جوڑے کے لیے دعا",
-                duaText: "”اللہ آپ کو برکت دے، آپ پر برکت نازل فرمائے اور آپ دونوں کو خیر میں اکٹھا کرے۔“",
-                quran: "اور اس کی نشانیوں میں سے ہے کہ اس نے تمہارے لیے تمہاری ہی جنس سے جوڑے بنائے تاکہ تم ان سے سکون حاصل کرو۔",
-                hadith: "تم میں سے بہترین شخص وہ ہے جو اپنے گھر والوں کے لیے بہترین ہے۔",
-                intro: "اللہ تعالی کے فضل و کرم اور سنت رسول ﷺ کے مطابق، ہم آپ کو نکاح و بارات کی تقریب میں شرکت کی پرخلوص دعوت دیتے ہیں:",
+                duaText: "”اللہ آپ کو برکت دے، آپ پر برکت نازل فرمائے اور آپ دونوں کو خیر میں اکٹھا کرےـ“",
+                verse: "﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً إِنَّ فِي ذَلِكَ لَآيَاتٍ لِقَوْمٍ يَتَفَكَّرُونَ ﴾ <br><span style='font-size: 0.8rem; font-weight: normal; color: var(--text-muted);'>سورۃ الروم (21)</span>",
+                hadith: "قال رسول الله -صلى الله عليه وسلم-: «خيرُكم خيرُكم لأهله، وأنا خيرُكم لأهلي»",
+                spiritual1: "اللہ عزوجل کی نعمتوں کی فراوانی اور ہمارے پیارے نبی حضرت محمد ﷺ کی سنت کی پیروی میں",
+                spiritual2: "اور حضرت حافظ محمد تقي (رحمۃ اللہ علیہ) اور حضرت مولانا سید قاسم (رحمۃ اللہ علیہ) کے روحانی فیض سے۔",
+                spiritual3: "”اللہ تعالیٰ کے فضل، روحانی رہنمائی اور ہمارے محبوب شیخ و مرشد سید غلام رسول نقشبندی کی دعاؤں سے، اور ہمارے بزرگوں اور معزز خاندان کے افراد کی موجودگی میں...“",
+                intro: "شمس الحق انصاری، اعزاز احمد انصاری، اور طلعت قمر انصاری آپ کو نکاح اور بارات کی تقریب میں شرکت کی پرخلوص دعوت دیتے ہیں:",
+                brideParents: "دخترِ اعزاز و طلعت انصاری",
+                groomParents: "فرزندِ لیاقت و انجم خان",
+                blessing: "بارك الله لكما، وبارك عليكما، وجمع بينكما في خير",
                 scratchText: "✨ شادی کی تاریخ دیکھنے کے لیے نیچے سکریچ کریں:",
+
+                eventDetailsTitle: "تقریب کی تفصیلات",
+                pNikahTitle: "نکاح و تقریبِ بارات",
+                pNikahTime: "شام 07:00 بجے سے",
+                pNikahLoc: "مہاراجا بینکوئٹ ہال، چھٹی منزل، گھوڑبندر روڈ، ٹھانے ویسٹ، 400601",
+                pDinnerTitle: "عشاء",
+                pDinnerTime: "رات 09:00 بجے سے",
+                pDinnerLoc: "روف ٹاپ، مہاراجا بینکوئٹ ہال، گھوڑبندر روڈ، ٹھانے ویسٹ، 400601",
+
                 countdown: "تقریب کا الٹی گنتی",
                 days: "دن", hours: "گھنٹے", mins: "منٹ", secs: "سیکنڈ",
+
+                // Family Blessings (Urdu Translation)
+                blessingsMainTitle: "<i class=\"fa-solid fa-hands-praying\" style=\"color: var(--gold);\"></i> بزرگوں کی دعائیں و برکات",
+                bSubhead1: "ہماری روایت اور برکات",
+                bQuote1: "”ہر نسل اپنے پیچھے دعائیں، اقدار اور محبت چھوڑ جاتی ہے۔ ہم پورے خلوص کے ساتھ اپنے بزرگوں کی دعائیں چاہتے ہیں اور ان کو محبت سے یاد کرتے ہیں جو ہمارے دلوں میں زندہ ہیں۔“",
+                bGrandparentsHeader: "دادا دادی اور نانا نانی کی دعا و محبت کے ساتھ:",
+                bGrandparentsList: "<li><strong>شمس الحق انصاری</strong> | <strong>زیب النساء انصاری</strong></li><li><strong>مرحوم مولانا محمد رفیق عُظمیٰ</strong> <span style=\"font-size:0.8rem; color:var(--text-muted);\">(اللہ انہیں جنت الفردوس میں اعلیٰ مقام عطا فرمائے - آمین)</span> | <strong>صدر النساء عُظمیٰ</strong></li>",
+                bSubhead2: "خاندان کے مرحومین کی یاد میں دعائے مغفرت",
+                bRememberList: "<li>مرحوم نسیم انور انصاری</li><li>مرحوم ڈاکٹر مسعود عُظمیٰ</li><li>مرحوم مشاہد عُظمیٰ</li>",
+                bDuaDeceased: "”اللہ تعالیٰ ان سب کو جنت الفردوس میں اعلیٰ مقام عطا فرمائے اور اپنی رحمتِ کاملہ سے نوازے۔ آمین۔“",
+                bSubhead3: "ہمارا پیارا خاندان",
+                bCherishedText: "ہم نہایت مسرت اور ممنونیت کے ساتھ اپنے تمام عزیز و اقارب کی موجودگی میں اس مبارک تقریب کو منانے کے منتظر ہیں۔",
+                bFamilyLove: "• خاندان کی محبت کی ایک جھلک •<br><span style=\"font-size: 1.1rem; color: var(--gold-dark);\">خلوص و محبت کے ساتھ: انصاری فیملی</span>",
+                bQuoteStory: "”ہر خاندان کی ایک کہانی ہوتی ہے؛ ہماری کہانی محبت، ایمان، دعاؤں اور باہمی تعلق پر مبنی ہے۔ ہم اپنے خاندان کے ہر فرد، رشتہ دار اور دوست کے تہہ دل سے مشکور ہیں جن کی دعاؤں نے اس تقریب کو پرمسرت بنایا۔“",
+                bSpecialMention: "خاص محبت",
+                bPrincessesHeader: "ہماری ننھی شہزادیوں کے لیے ڈھیروں پیار:",
+                bPrincessesNames: "جویریا آفاق &nbsp;|&nbsp; امیمہ آصف",
+                bPrincessesDua: "اللہ تعالیٰ انہیں خوشیاں، صحت، نیک سیرت اور برکتوں سے بھرا روشن مستقبل عطا فرمائے - آمین۔",
+
                 venue: "مقام اور پتہ",
                 mapBtn: "گوگل نقشے پر راستہ دیکھیں",
                 rsvpTitle: "تائید آمد (RSVP)",
                 name: "مہمان کا نام:", count: "مہمانوں کی تعداد:", attend: "کیا آپ شرکت کریں گے؟", submit: "ارسال کریں",
                 yes: "جی ہاں، میں شرکت کروں گا", no: "معذرت، میں شرکت نہیں کر سکوں گا",
+                
+                // Contact Details Translation (Urdu)
                 contact: "رابطہ برائے معلومات",
+                cName1: "شمس الحق انصاری", cRel1: "دلہن کے دادا",
+                cName2: "اعزاز انصاری", cRel2: "دلہن کے والد",
+                cName3: "آفاق انصاری", cRel3: "دلہن کے بھائی",
+
+                // Closing Section (Urdu)
+                closingTitle: "اختتام",
+                closingText1: "”ہماری خوشیوں کا پیارا حصہ بننے اور ہمارے خاندان کو اپنی قیمتی دعاؤں میں یاد رکھنے کا بہت شکریہ۔ اللہ تعالیٰ آپ کو بہترین جزا دے اور ہمیشہ برکت عطا فرمائے۔“",
+                closingText2: "”ہم آپ سے التماس کرتے ہیں کہ دلہن، دولہا اور دونوں خاندانوں کو اپنی نیک دعاؤں میں یاد رکھیں۔ اللہ تعالیٰ اس نکاح میں برکت ڈالے اور اسے محبت، رحمت اور سکون سے بھر دے۔ آمین۔“",
+                closingRegards: "نیک تمناؤں کے ساتھ،",
+                closingFamily1: "الانصاری خاندان",
+                closingVerse: "”اور اس کی نشانیوں اور نعمتوں میں سے ایک یہ ہے کہ اس نے دلوں میں الفت پیدا کر دی۔<br>ہم انشاء اللہ آپ کے ساتھ جشن منانے کے منتظر ہیں۔“",
+                closingFamily2: "الانصاری خاندان",
                 scratchDay: "دن", scratchMonth: "مہینہ", scratchYear: "سال", scratchTime: "وقت"
             },
             hi: {
@@ -903,19 +1402,67 @@
                 loadingText: "अल्लाह के आशीर्वाद से आपका निमंत्रण पत्र तैयार किया जा रहा है...",
                 tapSeal: "निमंत्रण खोलने के लिए सील पर टैप करें",
                 duaTitle: "दंपति के लिए दुआ",
-                duaText: "“अल्लाह आपको बरकत दे और आप दोनों को खुशियों के साथ बनाए रखे।”",
-                quran: "और उसकी निशानियों में से है कि उसने आपके लिए आपकी ही जाति से जोड़े बनाए ताकि आप शांति पाओ।",
-                hadith: "तुममें से सबसे अच्छा वह है जो अपने परिवार के लिए सबसे अच्छा है।",
-                intro: "अल्लाह के आशीर्वाद और सुन्नत के साथ, हम आपको निकाह और बारात के शुभ अवसर पर आमंत्रित करते हैं:",
+                duaText: "“अल्लाह आपको बरकत दे, आप पर अपनी رحمت बरसाए और आप दोनों को नेकी के साथ जोड़े रखे।”",
+                verse: "﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً إِنَّ فِي ذَلِكَ لَآيَاتٍ لِقَوْمٍ يَتَفَكَّرُونَ ﴾ <br><span style='font-size: 0.8rem; font-weight: normal; color: var(--text-muted);'>सूरह अर-रूम (21)</span>",
+                hadith: "पैग़ंबर मुहम्मद ﷺ ने फ़रमाया: \"तुममें से सबसे अच्छे वे लोग हैं जो अपने परिवार (पत्नी) के प्रति सबसे अच्छे हैं, और मैं अपने परिवार के प्रति तुममें से सबसे अच्छा हूँ।\"",
+                spiritual1: "अल्लाह ताला की नेमतों और हमारे प्यारे नबी हज़रत मुहम्मद ﷺ की सुन्नत के अनुसरण में",
+                spiritual2: "तथा हज़रत हाफ़िज़ मुहम्मद तकी (रह.) और हज़रत मौलाना सैयद कासिम (रह.) के रूहानी फैज़ से।",
+                spiritual3: "“अल्लाह तआला के करम, रूहानी मार्गदर्शन और हमारे प्यारे शैख़ व मुर्शिद सैयद गुलाम रसूल नक्शबंदी की दुआओं से, और हमारे बुजुर्गों तथा सम्मानित परिवारजनों की उपस्थिति में...”",
+                intro: "शम्सुल हक अंसारी, एज़ाज़ अहमद अंसारी और طلعت कमर अंसारी आपको निकाह और बारात समारोह में सादर आमंत्रित करते हैं:",
+                brideParents: "एज़ाज़ और طلعت अंसारी की सुपुत्री",
+                groomParents: "लियाक़त और अंजुम खान के सुपुत्र",
+                blessing: "अल्लाह आप दोनों को बरकत दे, आप पर अपनी रहमत बरसाए और नेकी में मिलाए",
                 scratchText: "✨ शादी की तारीख देखने के लिए नीचे स्क्रैच करें:",
+
+                eventDetailsTitle: "कार्यक्रम विवरण",
+                pNikahTitle: "निकाह एवं बारात समारोह",
+                pNikahTime: "शाम 07:00 बजे से",
+                pNikahLoc: "महाराजा बैंक्वेट हॉल, छठी मंजिल, घोडबंदर रोड, ठाणे वेस्ट, 400601",
+                pDinnerTitle: "डिनर (रात्रिभोज)",
+                pDinnerTime: "रात 09:00 बजे से",
+                pDinnerLoc: "रूफ टॉप, महाराजा बैंक्वेट हॉल, घोडबंदर रोड, ठाणे वेस्ट, 400601",
+
                 countdown: "कार्यक्रम की उल्टी गिनती",
-                days: "दिन", hours: "घंटे", मिनट: "मिनट", secs: "सेकंड",
+                days: "दिन", hours: "घंटे", mins: "मिनट", secs: "सेकंड",
+
+                // Family Blessings (Hindi Translation)
+                blessingsMainTitle: "<i class=\"fa-solid fa-hands-praying\" style=\"color: var(--gold);\"></i> पारिवारिक आशीर्वाद",
+                bSubhead1: "हमारी विरासत और आशीर्वाद",
+                bQuote1: "“हर पीढ़ी अपने पीछे दुआएं, संस्कार और प्रेम छोड़ जाती है। हम कृतज्ञता के साथ अपने बुजुर्गों का आशीर्वाद चाहते हैं और उन प्रियजनों को याद करते हैं जो हमारे दिलों में जीवित हैं।”",
+                bGrandparentsHeader: "दादा-दादी एवं नाना-नानी के स्नेह और आशीर्वाद के साथ:",
+                bGrandparentsList: "<li><strong>शम्सुल हक अंसारी</strong> एवं <strong>ज़ैबुन्निसा अंसारी</strong></li><li><strong>मरहूम मौलाना मोहम्मद रफीक अज़मी</strong> <span style=\"font-size:0.8rem; color:var(--text-muted);\">(अल्लाह उन्हें जन्नतुल फ़िरदौस में आला मक़ाम अता फरमाए - आमीन)</span> | <strong>सदरुन्निसा अज़मी</strong></li>",
+                bSubhead2: "परिवार के मरहूमों की याद में दुआएं",
+                bRememberList: "<li>मरहूम नसीम अनवर अंसारी</li><li>मरहूम डॉ. मसूद अज़मी</li><li>मरहूम मुशाहिद अज़मी</li>",
+                bDuaDeceased: "“अल्लाह तआला उन्हें जन्नतुल फ़िरदौस में सर्वोच्च स्थान दे और अपनी असीम रहमत से नवाजे - आमीन।”",
+                bSubhead3: "हमारा प्रिय परिवार",
+                bCherishedText: "हम बड़े प्यार और आभार के साथ अपने समस्त प्रिय परिवार व रिश्तेदारों की उपस्थिति में इस मुबारक मौके को मनाने के लिए उत्सुक हैं।",
+                bFamilyLove: "• परिवार के प्यार की एक झलक •<br><span style=\"font-size: 1.1rem; color: var(--gold-dark);\">सप्रेम: अंसारी परिवार</span>",
+                bQuoteStory: "“हर परिवार की एक कहानी होती है; हमारी कहानी प्यार, आस्था, दुआओं और एकजुटता पर आधारित है। हम परिवार के हर सदस्य और दोस्त के आभारी हैं जिनके आशीर्वाद ने इस अवसर को और खास बनाया।”",
+                bSpecialMention: "विशेष प्यार",
+                bPrincessesHeader: "हमारी नन्हीं राजकुमारियों के लिए ढेरों प्यार:",
+                bPrincessesNames: "जुवेरिया आफ़ाक &nbsp;|&nbsp; उमैमा आसिफ",
+                bPrincessesDua: "अल्लाह उन्हें खुशियां, अच्छी सेहत, नेक सीरत और बरकत भरा सुंदर भविष्य प्रदान करे - आमीन।",
+
                 venue: "स्थान और पता",
                 mapBtn: "गूगल मैप्स पर दिशा-निर्देश देखें",
                 rsvpTitle: "उपस्थिति की पुष्टि (RSVP)",
                 name: "अतिथि का नाम:", count: "अतिथियों की संख्या:", attend: "क्या आप शामिल होंगे?", submit: "सबमिट करें",
                 yes: "हाँ, मैं शामिल होऊँगा", no: "क्षमा करें, मैं शामिल नहीं हो पाऊँगा",
+                
+                // Contact Details Translation (Hindi)
                 contact: "परिवार से संपर्क करें",
+                cName1: "शम्सुल हक अंसारी", cRel1: "दुल्हन के दादा",
+                cName2: "एज़ाज़ अंसारी", cRel2: "दुल्हन के पिता",
+                cName3: "आफ़ाक अंसारी", cRel3: "दुल्हन के भाई",
+
+                // Closing Section (Hindi)
+                closingTitle: "समापन",
+                closingText1: "“हमारी खुशियों का एक अनमोल हिस्सा बनने और हमारे परिवार को अपनी कीमती प्रार्थनाओं में याद रखने के लिए आपका बहुत-बहुत धन्यवाद। ईश्वर आपको प्रचुर मात्रा में पुरस्कार दे और हमेशा आशीर्वाद बनाए रखे।”",
+                closingText2: "“हम आपसे निवेदन करते हैं कि दुल्हन, दूल्हे और दोनों परिवारों को अपनी प्रार्थनाओं में याद रखें। ईश्वर इस विवाह को आशीर्वाद दे और इसे प्रेम, दया और शांति से भर दे। आमीन।”",
+                closingRegards: "सस्नेह,",
+                closingFamily1: "अल-अंसारी परिवार",
+                closingVerse: "“और उनकी निशानियों और कृपाओं में से एक यह है कि उन्होंने दिलों को जोड़ दिया।<br>हम इंशाअल्लाह आपके साथ जश्न मनाने के लिए उत्सुक हैं।”",
+                closingFamily2: "अल-अंसारी परिवार",
                 scratchDay: "दिन", scratchMonth: "महीना", scratchYear: "साल", scratchTime: "समय"
             },
             ar: {
@@ -925,23 +1472,72 @@
                 tapSeal: "انقر على الختم الشمعي لفتح بطاقة الدعوة",
                 duaTitle: "دعاء للعروسين",
                 duaText: "“اللَّهُمَّ بَارِكْ لَهُمَا وَبَارِكْ عَلَيْهِمَا وَاجْمَعْ بَيْنَهُمَا فِي خَيْرٍ”",
-                quran: "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِّنْ أَنْفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً",
-                hadith: "خَيْرُكُمْ خَيْرُكُمْ لِأَهْلِهِ، وَأَنَا خَيْرُكُمْ لِأَهْلِي",
-                intro: "بفضل الله تعالى وعلى سنة رسوله الكريم ﷺ، نتشرف بدعوتكم لحضور حفل زفاف وبارات العروسين:",
+                verse: "﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً إِنَّ فِي ذَلِكَ لَآيَاتٍ لِقَوْمٍ يَتَفَكَّرُونَ ﴾ <br><span style='font-size: 0.8rem; font-weight: normal; color: var(--text-muted);'>سورة الروم (21)</span>",
+                hadith: "قال رسول الله -صلى الله عليه وسلم-: «خيرُكم خيرُكم لأهله، وأنا خيرُكم لأهلي»",
+                spiritual1: "بفيض من نعم الله عز وجل واتباعاً لسنة نبينا الحبيب محمد ﷺ",
+                spiritual2: "وبالبركات الروحية (الفيض الروحاني) لحضرة حافظ محمد تقي (رحمه الله) وحضرة مولانا سيد قاسم (رحمه الله).",
+                spiritual3: "\"ببركة الله تعالى والتوجيه الروحي ودعوات شيخنا ومرشدنا الحبيب، السيد غلام رسول نقشبندي، وبحضور كبارنا وأفراد عائلتنا الكرام...\"",
+                intro: "يتشرف كل من شمس الحق أنصاري، وأعزاز أحمد أنصاري، وطلعت قمر أنصاري بدعوتكم لتشريفنا بحضور حفل عقد القران ومراسم الزفاف لـ:",
+                brideParents: "الابنة الغالية لأعزاز وطلعت أنصاري",
+                groomParents: "الابن الغالي لياقت وأنجم خان",
+                blessing: "بارك الله لكما، وبارك عليكما، وجمع بينكما في خير",
                 scratchText: "✨ قم بالمسح على الكرت أدناه لكشف تاريخ الزفاف:",
-                countdown: "العد التنازلي للمناسبة",
+
+                eventDetailsTitle: "تفاصيل الحفل",
+                pNikahTitle: "عقد القران والزفاف",
+                pNikahTime: "07:00 مساءً",
+                pNikahLoc: "قاعة مهاراجا للاحتفالات، الطابق السادس، طريق غودبندر، ثين غرب، 400601",
+                pDinnerTitle: "العشاء",
+                pDinnerTime: "09:00 مساءً",
+                pDinnerLoc: "السطح (Roof Top)، قاعة مهاراجا للاحتفالات، طريق غودبندر، ثين غرب، 400601",
+
+                countdown: "بـــاقي على فـرحنــــــا",
                 days: "أيام", hours: "ساعات", mins: "دقائق", secs: "ثواني",
+
+                // Family Blessings (Arabic)
+                blessingsMainTitle: "<i class=\"fa-solid fa-hands-praying\" style=\"color: var(--gold);\"></i> بركات العائلة",
+                bSubhead1: "إرثنا وبركاتنا",
+                bQuote1: "\"يترك كل جيل وراءه دعوات وقِيماً ومحبة. وبكل امتنان، نلتمس بركات كبارنا ونستذكر بمحبة أولئك الذين لا تزال ذكراهم حية في قلوبنا.\"",
+                bGrandparentsHeader: "مع المحبة والدعوات والبركات من الأجداد والجدات:",
+                bGrandparentsList: "<li><strong>شمس الحق أنصاري</strong> | <strong>زينب النساء أنصاري</strong></li><li><strong>المرحوم مولانا محمد رفيق عزمي</strong> <span style=\"font-size:0.8rem; color:var(--text-muted);\">(أسكنه الله الفردوس الأعلى - آمين)</span> | <strong>صدر النساء عزمي</strong></li>",
+                bSubhead2: "استذكار أحبائنا من أفراد العائلة بمشاعر المحبة والدعاء",
+                bRememberList: "<li>المرحوم نسيم أنور أنصاري</li><li>المرحوم الدكتور مسعود عزمي</li><li>المرحوم مشاهد عزمي</li>",
+                bDuaDeceased: "\"نسأل الله أن يمنحهم أعلى درجات الجنة (الفردوس الأعلى) ويغمرهم برحمته الواسعة - آمين.\"",
+                bSubhead3: "عائلتنا الغالية",
+                bCherishedText: "بكل حب وامتنان، نتطلع للاحتفال بهذه المناسبة المباركة بصحبة أفراد عائلتنا وأقاربنا الأعزاء جميعاً.",
+                bFamilyLove: "• لمسة من حب العائلة •<br><span style=\"font-size: 1.1rem; color: var(--gold-dark);\">مع المحبة من عائلة أنصاري</span>",
+                bQuoteStory: "\"لكل عائلة قصة؛ وقصتنا مبنية على الحب والإيمان والدعاء والترابط الأسري. نعرب عن عميق امتناننا لكل فرد من العائلة وقريب وصديق أضفت بركاتهم ودعواتهم معنىً خاصاً ومميزاً على هذه المناسبة السعيدة.\"",
+                bSpecialMention: "تحية خاصة",
+                bPrincessesHeader: "مع وافر الحب لأميراتنا الصغيرات:",
+                bPrincessesNames: "جويرية آفاق &nbsp;|&nbsp; أميمة آصف",
+                bPrincessesDua: "نسأل الله أن يرزقهن السعادة والصحة والعافية وحسن الخلق، وأن يكتب لهن مستقبلاً جميلاً مليئاً بالبركة - آمين.",
+
                 venue: "موقع الحفل والقاعة",
                 mapBtn: "فتح الموقع على خرائط Google",
                 rsvpTitle: "تأكيد الحضور (RSVP)",
                 name: "الاسم الكريم:", count: "عدد المرافقين:", attend: "هل ستحضر المناسبة؟", submit: "إرسال التأكيد",
                 yes: "نعم، يشرفني الحضور", no: "أعتذر عن الحضور",
-                contact: "للتواصل مع العائلة",
+                
+                // Contact Details Translation (Arabic)
+                contact: "للتواصل والاستفسار",
+                cName1: "شمس الحق أنصاري", cRel1: "جد العروس",
+                cName2: "أعزاز أنصاري", cRel2: "والد العروس",
+                cName3: "آفاق أنصاري", cRel3: "شقيق العروس",
+
+                // Closing Section (Arabic)
+                closingTitle: "الختام",
+                closingText1: "شكراً لكونكم جزءاً عزيزاً من سعادتنا ولتذكركم عائلتنا في دعواتكم الغالية. جزاكم الله خيراً وفيراً وبارك فيكم دائماً.",
+                closingText2: "نرجو منكم تذكر العروس والعريس والعائلتين في دعواتكم الطيبة. نسأل الله أن يبارك في هذا الزواج ويغمره بالحب والرحمة والسكينة. آمين.",
+                closingRegards: "مع خالص التحيات",
+                closingFamily1: "عائلة الأنصاري",
+                closingVerse: "\"ومن آياته ونعمه أن ألّف بين القلوب.<br>نتطلع للاحتفال معكم، إن شاء الله.\"",
+                closingFamily2: "عائلة الأنصاري",
                 scratchDay: "اليوم", scratchMonth: "الشهر", scratchYear: "السنة", scratchTime: "الساعة"
             }
         };
 
         function selectLanguage(lang) {
+            currentLang = lang;
             document.documentElement.setAttribute('data-lang', lang);
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('selected'));
             event.currentTarget.classList.add('selected');
@@ -955,16 +1551,53 @@
             document.getElementById('tapSealText').innerText = t.tapSeal;
             document.getElementById('duaModalTitle').innerText = t.duaTitle;
             document.getElementById('duaModalText').innerText = t.duaText;
-            document.getElementById('quranText').innerText = t.quran;
-            document.getElementById('hadithText').innerText = t.hadith;
+            
+            document.getElementById('verseText').innerHTML = t.verse;
+            document.getElementById('hadithText').innerHTML = t.hadith;
+            document.getElementById('spiritualText1').innerText = t.spiritual1;
+            document.getElementById('spiritualText2').innerText = t.spiritual2;
+            document.getElementById('spiritualText3').innerText = t.spiritual3;
+
             document.getElementById('invitationIntro').innerText = t.intro;
+            document.getElementById('brideParents').innerText = t.brideParents;
+            document.getElementById('groomParents').innerText = t.groomParents;
+            document.getElementById('blessingText').innerText = t.blessing;
+
             document.getElementById('scratchInstruction').innerText = t.scratchText;
+
+            document.getElementById('eventDetailsTitle').innerText = t.eventDetailsTitle;
+            document.getElementById('pNikahTitle').innerText = t.pNikahTitle;
+            document.getElementById('pNikahTime').innerHTML = `<i class="fa-solid fa-clock"></i> <span>${t.pNikahTime}</span>`;
+            document.getElementById('pNikahLoc').innerText = t.pNikahLoc;
+            
+            document.getElementById('pDinnerTitle').innerText = t.pDinnerTitle;
+            document.getElementById('pDinnerTime').innerHTML = `<i class="fa-solid fa-clock"></i> <span>${t.pDinnerTime}</span>`;
+            document.getElementById('pDinnerLoc').innerText = t.pDinnerLoc;
+
             document.getElementById('countdownTitle').innerText = t.countdown;
             
             document.getElementById('lblDays').innerText = t.days;
             document.getElementById('lblHours').innerText = t.hours;
             document.getElementById('lblMins').innerText = t.mins;
             document.getElementById('lblSecs').innerText = t.secs;
+
+            // Update Family Blessings Texts
+            document.getElementById('blessingsMainTitle').innerHTML = t.blessingsMainTitle;
+            document.getElementById('bSubhead1').innerText = t.bSubhead1;
+            document.getElementById('bQuote1').innerText = t.bQuote1;
+            document.getElementById('bGrandparentsHeader').innerText = t.bGrandparentsHeader;
+            document.getElementById('bGrandparentsList').innerHTML = t.bGrandparentsList;
+            document.getElementById('bSubhead2').innerText = t.bSubhead2;
+            document.getElementById('bRememberList').innerHTML = t.bRememberList;
+            document.getElementById('bDuaDeceased').innerText = t.bDuaDeceased;
+            document.getElementById('bSubhead3').innerText = t.bSubhead3;
+            document.getElementById('bCherishedText').innerText = t.bCherishedText;
+            document.getElementById('bFamilyLove').innerHTML = t.bFamilyLove;
+            document.getElementById('bQuoteStory').innerText = t.bQuoteStory;
+            document.getElementById('bSpecialMention').innerText = t.bSpecialMention;
+            document.getElementById('bPrincessesHeader').innerText = t.bPrincessesHeader;
+            document.getElementById('bPrincessesNames').innerHTML = t.bPrincessesNames;
+            document.getElementById('bPrincessesDua').innerText = t.bPrincessesDua;
 
             document.getElementById('lblScratchDay').innerText = t.scratchDay;
             document.getElementById('lblScratchMonth').innerText = t.scratchMonth;
@@ -980,7 +1613,24 @@
             document.getElementById('btnSubmitRsvp').innerText = t.submit;
             document.getElementById('optYes').innerText = t.yes;
             document.getElementById('optNo').innerText = t.no;
+            
+            // Update Contact Details Translation
             document.getElementById('contactTitle').innerText = t.contact;
+            document.getElementById('cName1').innerText = t.cName1;
+            document.getElementById('cRel1').innerText = t.cRel1;
+            document.getElementById('cName2').innerText = t.cName2;
+            document.getElementById('cRel2').innerText = t.cRel2;
+            document.getElementById('cName3').innerText = t.cName3;
+            document.getElementById('cRel3').innerText = t.cRel3;
+
+            // Update Closing Section Texts
+            document.getElementById('closingTitle').innerText = t.closingTitle;
+            document.getElementById('closingText1').innerText = t.closingText1;
+            document.getElementById('closingText2').innerText = t.closingText2;
+            document.getElementById('closingRegards').innerText = t.closingRegards;
+            document.getElementById('closingFamily1').innerText = t.closingFamily1;
+            document.getElementById('closingVerse').innerHTML = t.closingVerse;
+            document.getElementById('closingFamily2').innerText = t.closingFamily2;
         }
 
         function startLoadingTransition() {
@@ -1023,7 +1673,6 @@
             });
         }
 
-        /* Scroll Observer Function for Slow & Smooth Fade-In Effect */
         function initScrollAnimations() {
             const fadeElements = document.querySelectorAll('.fade-in-element');
             const appContainer = document.getElementById('app');
@@ -1044,6 +1693,7 @@
 
         function initScratchCard() {
             const canvases = document.querySelectorAll('.scratch-circle-canvas');
+            const t = translations[currentLang];
             
             canvases.forEach(canvas => {
                 const ctx = canvas.getContext('2d');
@@ -1051,18 +1701,20 @@
                 canvas.width = size;
                 canvas.height = size;
 
-                // Fill with Light Brown Color
-                ctx.fillStyle = '#A67C52';
+                // Burgandy (#58111A)
+                ctx.fillStyle = '#58111A';
                 ctx.beginPath();
                 ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
                 ctx.fill();
 
-                // Scratch Overlay Text
                 ctx.fillStyle = '#FFFFFF';
-                ctx.font = 'bold 11px sans-serif';
+                ctx.font = 'bold 12px sans-serif';
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
-                const labelText = canvas.getAttribute('data-label') || 'اكشط';
+                
+                const dataType = canvas.getAttribute('data-type');
+                const labelText = t[dataType] || 'اكشط';
+                
                 ctx.fillText(labelText, size / 2, size / 2);
 
                 let isDrawing = false;
@@ -1141,10 +1793,10 @@
             const diff = targetDate - now;
 
             if (diff > 0) {
-                document.getElementById('cDays').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
-                document.getElementById('cHours').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-                document.getElementById('cMins').innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-                document.getElementById('cSecs').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+                document.getElementById('cDays').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24)));
+                document.getElementById('cHours').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+                document.getElementById('cMins').innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)));
+                document.getElementById('cSecs').innerText = String(Math.floor((diff % (1000 * 60)) / 1000));
             }
         }, 1000);
     </script>
