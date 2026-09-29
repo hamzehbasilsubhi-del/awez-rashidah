@@ -69,7 +69,7 @@
             scroll-behavior: smooth;
         }
 
-        /* Language Typography & English Specific Tweaks */
+        /* Language Typography & Specific Tweaks */
         [data-lang="en"] { direction: ltr; font-family: var(--font-en-body); }
         [data-lang="en"] .heading-font { font-family: var(--font-en-head); }
         
@@ -90,8 +90,36 @@
             margin: 6px auto !important;
         }
 
-        [data-lang="ur"] { direction: rtl; font-family: var(--font-urdu); line-height: 2.2; }
-        [data-lang="hi"] { direction: ltr; font-family: var(--font-hindi); }
+        /* Urdu Specific Adjustments */
+        [data-lang="ur"] { 
+            direction: rtl; 
+            font-family: var(--font-urdu); 
+            line-height: 1.6; 
+        }
+        [data-lang="ur"] .spiritual-text {
+            line-height: 1.6 !important;
+            margin-bottom: 6px !important;
+        }
+        [data-lang="ur"] .quran-frame-img {
+            transform: translateY(-20px) !important;
+            margin-bottom: 10px !important;
+        }
+        
+        /* Hindi Specific Adjustments */
+        [data-lang="hi"] { 
+            direction: ltr; 
+            font-family: var(--font-hindi); 
+            line-height: 1.45;
+        }
+        [data-lang="hi"] .spiritual-text {
+            line-height: 1.4 !important;
+            margin-bottom: 6px !important;
+        }
+        [data-lang="hi"] .quran-frame-img {
+            transform: translateY(0px) !important;
+            margin-bottom: 10px !important;
+        }
+
         [data-lang="ar"] { direction: rtl; font-family: var(--font-arabic); }
 
         /* Floating Petals */
@@ -1126,7 +1154,7 @@
                     </p>
                     <ul class="blessings-list" id="bGrandparentsList">
                         <li><strong>شمس الحق أنصاري</strong> | <strong>زينب النساء أنصاري</strong></li>
-                        <li><strong>المرحوم مولانا محمد رفيق عزمي</strong> <span style="font-size:0.85rem; color:var(--text-muted); font-weight:600;">(أسكنه الله الفردوس الأعلى - آمين)</span> | <strong>صدر النساء عزمي</strong></li>
+                        <li><strong>المرحوم مولانا محمد رفيق اعظمی</strong> <span style="font-size:0.85rem; color:var(--text-muted); font-weight:600;">(أسكنه الله الفردوس الأعلى - آمين)</span> | <strong>صدر النساء اعظمی</strong></li>
                     </ul>
                 </div>
 
@@ -1137,8 +1165,8 @@
                     <div class="blessings-subhead" id="bSubhead2">استذكار أحبائنا من أفراد العائلة بمشاعر المحبة والدعاء</div>
                     <ul class="blessings-list" id="bRememberList">
                         <li>المرحوم نسيم أنور أنصاري</li>
-                        <li>المرحوم الدكتور مسعود عزمي</li>
-                        <li>المرحوم مشاهد عزمي</li>
+                        <li>المرحوم الدكتور مسعود اعظمی</li>
+                        <li>المرحوم مشاهد اعظمی</li>
                     </ul>
                     <p class="blessings-quote" style="margin-top: 10px;" id="bDuaDeceased">
                         "نسأل الله أن يمنحهم أعلى درجات الجنة (الفردوس الأعلى) ويغمرهم برحمته الواسعة - آمين."
@@ -1361,8 +1389,8 @@
                 tapSeal: "دعوت نامہ کھولنے کے لیے سیل پر ٹیپ کریں",
                 duaTitle: "جوڑے کے لیے دعا",
                 duaText: "”اللہ آپ کو برکت دے، آپ پر برکت نازل فرمائے اور آپ دونوں کو خیر میں اکٹھا کرےـ“",
-                verse: "﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً إِنَّ فِي ذَلِكَ لَآيَاتٍ لِقَوْمٍ يَتَفَكَّرُونَ ﴾ <br><span style='font-size: 0.85rem; font-weight: 600; color: var(--text-muted);'>سورۃ الروم (21)</span>",
-                hadith: "قال رسول الله -صلى الله عليه وسلم-: «خيرُكم خيرُكم لأهله، وأنا خيرُكم لأهلي»",
+                verse: "“اور اُس کی نشانیوں میں سے یہ ہے کہ اُس نے تمہارے لیے تم ہی میں سے جوڑے پیدا کیے تاکہ تم اُن کے پاس سکون حاصل کرو، اور اُس نے تمہارے درمیان محبت اور رحمت پیدا کر دی۔ بے شک، اس میں اُن لوگوں کے لیے نشانیاں ہیں جو غور و فکر کرتے ہیں۔”<br><span style='font-size: 0.85rem; font-weight: 600; color: var(--text-muted);'>— سورۃ الروم (30:21)</span>",
+                hadith: "“تم میں سب سے بہترین وہ ہے جو اپنے گھر والوں (اپنی بیوی) کے لیے سب سے بہتر ہو، اور میں تم سب میں اپنے گھر والوں کے لیے سب سے بہتر ہوں۔”<br><span style='font-size: 0.85rem; font-weight: 600; color: var(--text-muted);'>— حضرت محمد ﷺ</span>",
                 spiritual1: "اللہ عزوجل کی نعمتوں کی فراوانی اور ہمارے پیارے نبی حضرت محمد ﷺ کی سنت کی پیروی میں",
                 spiritual2: "اور حضرت <strong class=\"spiritual-highlight\">حافظ محمد تقي (رحمۃ اللہ علیہ)</strong> اور حضرت <strong class=\"spiritual-highlight\">مولانا سید قاسم (رحمۃ اللہ علیہ)</strong> کے روحانی فیض سے۔",
                 spiritual3: "”اللہ تعالیٰ کے فضل، روحانی رہنمائی اور ہمارے محبوب شیخ و مرشد <strong class=\"spiritual-highlight\">سید غلام رسول نقشبندی</strong> کی دعاؤں سے، اور ہمارے بزرگوں اور معزز خاندان کے افراد کی موجودگی میں...“",
@@ -1427,7 +1455,7 @@
                 tapSeal: "निमंत्रण खोलने के लिए सील पर टैप करें",
                 duaTitle: "दंपति के लिए दुआ",
                 duaText: "“अल्लाह आपको बरकत दे, आप पर अपनी رحمت बरसाए और आप दोनों को नेकी के साथ जोड़े रखे।”",
-                verse: "﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً إِنَّ فِي ذَلِكَ لَآيَاتٍ لِقَوْمٍ يَتَفَكَّرُونَ ﴾ <br><span style='font-size: 0.85rem; font-weight: 600; color: var(--text-muted);'>सूरह अर-रूम (21)</span>",
+                verse: "“और उसकी निशानियों में से यह है कि उसने तुम्हारे लिए तुम्हीं में से जीवनसाथी बनाए, ताकि तुम उनके पास सुकून पाओ, और उसने तुम्हारे बीच प्रेम और दया रखी। निश्चय ही, इसमें उन लोगों के लिए निशानियाँ हैं जो चिंतन करते हैं।”<br><span style='font-size: 0.85rem; font-weight: 600; color: var(--text-muted);'>सूरह अर-रूम (21)</span>",
                 hadith: "पैग़ंबर मुहम्मद ﷺ ने फ़रमाया: \"तुममें से सबसे अच्छे वे लोग हैं जो अपने परिवार (पत्नी) के प्रति सबसे अच्छे हैं, और मैं अपने परिवार के प्रति तुममें से सबसे अच्छा हूँ।\"",
                 spiritual1: "अल्लाह ताला की नेमतों और हमारे प्यारे नबी हज़रत मुहम्मद ﷺ की सुन्नत के अनुसरण में",
                 spiritual2: "तथा हज़रत <strong class=\"spiritual-highlight\">हाफ़िज़ मुहम्मद तकी (रह.)</strong> और हज़रत <strong class=\"spiritual-highlight\">मौलाना सैयद कासिम (रह.)</strong> के रूहानी फैज़ से।",
@@ -1452,9 +1480,9 @@
                 bSubhead1: "हमारी विरासत और आशीर्वाद",
                 bQuote1: "“हर पीढ़ी अपने पीछे दुआएं, संस्कार और प्रेम छोड़ जाती है। हम कृतज्ञता के साथ अपने बुजुर्गों का आशीर्वाद चाहते हैं और उन प्रियजनों को याद करते हैं जो हमारे दिलों में जीवित हैं।”",
                 bGrandparentsHeader: "दादा-दादी एवं नाना-नानी के स्नेह और आशीर्वाद के साथ:",
-                bGrandparentsList: "<li><strong>शम्सुल हक अंसारी</strong> एवं <strong>ज़ैबुन्निसा अंसारी</strong></li><li><strong>मरहूम मौलाना मोहम्मद रफीक अज़मी</strong> <span style=\"font-size:0.85rem; color:var(--text-muted); font-weight:600;\">(अल्लाह उन्हें जन्नतुल फ़िरदौस में आला मक़ाम अता फरमाए - आमीन)</span> | <strong>सदरुन्निसा अज़मी</strong></li>",
+                bGrandparentsList: "<li><strong>शम्सुल हक अंसारी</strong> एवं <strong>ज़ैबुन्निसा अंसारी</strong></li><li><strong>मरहूम मौलाना मोहम्मद रफीक आजमी</strong> <span style=\"font-size:0.85rem; color:var(--text-muted); font-weight:600;\">(अल्लाह उन्हें जन्नतुल फ़िरदौस में आला मक़ाम अता फरमाए - आमीन)</span> | <strong>सदरुन्निसा आजमी</strong></li>",
                 bSubhead2: "परिवार के मरहूमों की याद में दुआएं",
-                bRememberList: "<li>मरहूम नसीम अनवर अंसारी</li><li>मरहूम डॉ. मसूद अज़मी</li><li>मरहूम मुशाहिद अज़मी</li>",
+                bRememberList: "<li>मरहूम नसीम अनवर अंसारी</li><li>मरहूम डॉ. मसूद आजमी</li><li>मरहूम मुशाहिद आजमी</li>",
                 bDuaDeceased: "“अल्लाह तआला उन्हें जन्नतुल फ़िरदौस में सर्वोच्च स्थान दे और अपनी असीम रहमत से नवाजे - आमीन।”",
                 bSubhead3: "हमारा प्रिय परिवार",
                 bCherishedText: "हम बड़े प्यार और आभार के साथ अपने समस्त प्रिय परिवार व रिश्तेदारों की उपस्थिति में इस मुबारक मौके को मनाने के लिए उत्सुक हैं।",
@@ -1518,9 +1546,9 @@
                 bSubhead1: "إرثنا وبركاتنا",
                 bQuote1: "\"يترك كل جيل وراءه دعوات وقِيماً ومحبة. وبكل امتنان، نلتمس بركات كبارنا ونستذكر بمحبة أولئك الذين لا تزال ذكراهم حية في قلوبنا.\"",
                 bGrandparentsHeader: "مع المحبة والدعوات والبركات من الأجداد والجدات:",
-                bGrandparentsList: "<li><strong>شمس الحق أنصاري</strong> | <strong>زينب النساء أنصاري</strong></li><li><strong>المرحوم مولانا محمد رفيق عزمي</strong> <span style=\"font-size:0.85rem; color:var(--text-muted); font-weight:600;\">(أسكنه الله الفردوس الأعلى - آمين)</span> | <strong>صدر النساء عزمي</strong></li>",
+                bGrandparentsList: "<li><strong>شمس الحق أنصاري</strong> | <strong>زينب النساء أنصاري</strong></li><li><strong>المرحوم مولانا محمد رفيق اعظمی</strong> <span style=\"font-size:0.85rem; color:var(--text-muted); font-weight:600;\">(أسكنه الله الفردوس الأعلى - آمين)</span> | <strong>صدر النساء اعظمی</strong></li>",
                 bSubhead2: "استذكار أحبائنا من أفراد العائلة بمشاعر المحبة والدعاء",
-                bRememberList: "<li>المرحوم نسيم أنور أنصاري</li><li>المرحوم الدكتور مسعود عزمي</li><li>المرحوم مشاهد عزمي</li>",
+                bRememberList: "<li>المرحوم نسيم أنور أنصاري</li><li>المرحوم الدكتور مسعود اعظمی</li><li>المرحوم مشاهد اعظمی</li>",
                 bDuaDeceased: "\"نسأل الله أن يمنحهم أعلى درجات الجنة (الفردوس الأعلى) ويغمرهم برحمته الواسعة - آمين.\"",
                 bSubhead3: "عائلتنا الغالية",
                 bCherishedText: "بكل حب وامتنان، نتطلع للاحتفال بهذه المناسبة المباركة بصحبة أفراد عائلتنا وأقاربنا الأعزاء جميعاً.",
@@ -1576,7 +1604,7 @@
             document.getElementById('hadithText').innerHTML = t.hadith;
             document.getElementById('spiritualText1').innerText = t.spiritual1;
             document.getElementById('spiritualText2').innerHTML = t.spiritual2;
-            document.getElementById('spiritualText3').innerHTML = t.spiritual3;
+            document.getElementById('spiritualText3').innerText = t.spiritual3;
 
             document.getElementById('invitationIntro').innerText = t.intro;
             document.getElementById('brideParents').innerText = t.brideParents;
