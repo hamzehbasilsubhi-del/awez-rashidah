@@ -73,7 +73,6 @@
         [data-lang="en"] { direction: ltr; font-family: var(--font-en-body); }
         [data-lang="en"] .heading-font { font-family: var(--font-en-head); }
         
-        /* English specific line-height and positioning adjustments */
         [data-lang="en"] .hero-banner-content {
             justify-content: flex-end;
             padding-top: 20px;
@@ -1606,9 +1605,9 @@
             
             document.getElementById('verseText').innerHTML = t.verse;
             document.getElementById('hadithText').innerHTML = t.hadith;
-            document.getElementById('spiritualText1').innerText = t.spiritual1;
+            document.getElementById('spiritualText1').innerHTML = t.spiritual1;
             document.getElementById('spiritualText2').innerHTML = t.spiritual2;
-            document.getElementById('spiritualText3').innerText = t.spiritual3;
+            document.getElementById('spiritualText3').innerHTML = t.spiritual3;
 
             document.getElementById('invitationIntro').innerText = t.intro;
             document.getElementById('brideParents').innerText = t.brideParents;
