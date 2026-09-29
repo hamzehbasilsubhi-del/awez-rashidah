@@ -1019,7 +1019,7 @@
                             <span class="scratch-val">27</span>
                             <span class="scratch-lbl" id="lblScratchDay">اليوم</span>
                         </div>
-                        <canvas class="scratch-circle-canvas" id="canvasDay" data-type="scratchDay"></canvas>
+                        <canvas class="scratch-circle-canvas" id="canvasDay" data-type="scratchAction"></canvas>
                     </div>
 
                     <div class="scratch-circle-item">
@@ -1027,7 +1027,7 @@
                             <span class="scratch-val">11</span>
                             <span class="scratch-lbl" id="lblScratchMonth">الشهر</span>
                         </div>
-                        <canvas class="scratch-circle-canvas" id="canvasMonth" data-type="scratchMonth"></canvas>
+                        <canvas class="scratch-circle-canvas" id="canvasMonth" data-type="scratchAction"></canvas>
                     </div>
 
                     <div class="scratch-circle-item">
@@ -1035,7 +1035,7 @@
                             <span class="scratch-val">2026</span>
                             <span class="scratch-lbl" id="lblScratchYear">السنة</span>
                         </div>
-                        <canvas class="scratch-circle-canvas" id="canvasYear" data-type="scratchYear"></canvas>
+                        <canvas class="scratch-circle-canvas" id="canvasYear" data-type="scratchAction"></canvas>
                     </div>
 
                     <div class="scratch-circle-item">
@@ -1043,7 +1043,7 @@
                             <span class="scratch-val">07:00</span>
                             <span class="scratch-lbl" id="lblScratchTime">الساعة</span>
                         </div>
-                        <canvas class="scratch-circle-canvas" id="canvasTime" data-type="scratchTime"></canvas>
+                        <canvas class="scratch-circle-canvas" id="canvasTime" data-type="scratchAction"></canvas>
                     </div>
                 </div>
 
@@ -1380,7 +1380,8 @@
                 closingFamily1: "Ansari Family",
                 closingVerse: "“And among His signs and blessings is that He united hearts.<br>We look forward to celebrating with you, Insha'Allah.”",
                 closingFamily2: "Ansari Family",
-                scratchDay: "Day", scratchMonth: "Month", scratchYear: "Year", scratchTime: "Time"
+                scratchDay: "Day", scratchMonth: "Month", scratchYear: "Year", scratchTime: "Time",
+                scratchAction: "Scratch"
             },
             ur: {
                 selectLang: "اپنی پسندیدہ زبان منتخب کریں",
@@ -1446,7 +1447,8 @@
                 closingFamily1: "انصاری خاندان",
                 closingVerse: "”اور اس کی نشانیوں اور نعمتوں میں سے ایک یہ ہے کہ اس نے دلوں میں الفت پیدا کر دی۔<br>ہم انشاء اللہ آپ کے ساتھ جشن منانے کے منتظر ہیں۔“",
                 closingFamily2: "انصاری خاندان",
-                scratchDay: "دن", scratchMonth: "مہینہ", scratchYear: "سال", scratchTime: "وقت"
+                scratchDay: "دن", scratchMonth: "مہینہ", scratchYear: "سال", scratchTime: "وقت",
+                scratchAction: "سکریچ"
             },
             hi: {
                 selectLang: "अपनी पसंदीदा भाषा चुनें",
@@ -1512,7 +1514,8 @@
                 closingFamily1: "अंसारी परिवार",
                 closingVerse: "“और उनकी निशानियों और कृपाओं में से एक यह है कि उन्होंने दिलों को जोड़ दिया।<br>हम इंशाअल्लाह आपके साथ जश्न मनाने के लिए उत्सुक हैं।”",
                 closingFamily2: "अंसारी परिवार",
-                scratchDay: "दिन", scratchMonth: "महीना", scratchYear: "साल", scratchTime: "समय"
+                scratchDay: "दिन", scratchMonth: "महीना", scratchYear: "साल", scratchTime: "समय",
+                scratchAction: "स्क्रैच"
             },
             ar: {
                 selectLang: "اختر اللغة المفضلة",
@@ -1578,7 +1581,8 @@
                 closingFamily1: "عائلة الأنصاري",
                 closingVerse: "\"ومن آياته ونعمه أن ألّف بين القلوب.<br>نتطلع للاحتفال معكم، إن شاء الله.\"",
                 closingFamily2: "عائلة الأنصاري",
-                scratchDay: "اليوم", scratchMonth: "الشهر", scratchYear: "السنة", scratchTime: "الساعة"
+                scratchDay: "اليوم", scratchMonth: "الشهر", scratchYear: "السنة", scratchTime: "الساعة",
+                scratchAction: "اكشط"
             }
         };
 
@@ -1604,7 +1608,7 @@
             document.getElementById('hadithText').innerHTML = t.hadith;
             document.getElementById('spiritualText1').innerText = t.spiritual1;
             document.getElementById('spiritualText2').innerHTML = t.spiritual2;
-            document.getElementById('spiritualText3').innerHTML = t.spiritual3;
+            document.getElementById('spiritualText3').innerText = t.spiritual3;
 
             document.getElementById('invitationIntro').innerText = t.intro;
             document.getElementById('brideParents').innerText = t.brideParents;
@@ -1753,7 +1757,11 @@
                 const ctx = canvas.getContext('2d');
                 if (!canvas.isScratched) {
                     const size = 75;
+                    canvas.width = size;
+                    canvas.height = size;
+                    
                     ctx.clearRect(0, 0, size, size);
+                    ctx.globalCompositeOperation = 'source-over';
                     ctx.fillStyle = '#7A1C28';
                     ctx.beginPath();
                     ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
@@ -1764,9 +1772,7 @@
                     ctx.textAlign = 'center';
                     ctx.textBaseline = 'middle';
                     
-                    const dataType = canvas.getAttribute('data-type');
-                    const labelText = t[dataType] || 'اكشط';
-                    
+                    const labelText = t.scratchAction || 'كشط';
                     ctx.fillText(labelText, size / 2, size / 2);
                 }
             });
@@ -1780,8 +1786,6 @@
                 canvases.forEach(canvas => {
                     const ctx = canvas.getContext('2d');
                     const size = 75;
-                    canvas.width = size;
-                    canvas.height = size;
                     canvas.isScratched = false;
 
                     let isDrawing = false;
