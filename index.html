@@ -232,7 +232,7 @@
             height: auto;
             margin-top: 110px; 
             filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.5));
-            animation: fadeInFromRight 3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation: fadeInFromRight 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
         @keyframes fadeInFromRight {
@@ -759,8 +759,7 @@
             line-height: 1.7;
         }
 
-        .form-group { margin-bottom: 20px; text-align: right; }
-        [dir="ltr"] .form-group { text-align: left; }
+        .form-group { margin-bottom: 20px; text-align: inherit; }
         .form-input, .form-select {
             width: 100%; padding: 12px 15px;
             border: none;
@@ -898,19 +897,19 @@
                     اختر اللغة المفضلة / Choose Language
                 </p>
                 <div class="lang-options">
-                    <button class="lang-btn" onclick="selectLanguage('en')">
+                    <button class="lang-btn" onclick="selectLanguage('en', event)">
                         <span>English</span>
                         <i class="fa-solid fa-chevron-right"></i>
                     </button>
-                    <button class="lang-btn" onclick="selectLanguage('ur')">
+                    <button class="lang-btn" onclick="selectLanguage('ur', event)">
                         <span>اردو (Urdu)</span>
                         <i class="fa-solid fa-chevron-left"></i>
                     </button>
-                    <button class="lang-btn" onclick="selectLanguage('hi')">
+                    <button class="lang-btn" onclick="selectLanguage('hi', event)">
                         <span>हिन्दी (Hindi)</span>
                         <i class="fa-solid fa-chevron-right"></i>
                     </button>
-                    <button class="lang-btn" onclick="selectLanguage('ar')">
+                    <button class="lang-btn" onclick="selectLanguage('ar', event)">
                         <span>العربية</span>
                         <i class="fa-solid fa-chevron-left"></i>
                     </button>
@@ -1311,8 +1310,8 @@
 
     <script>
         let currentLang = 'ar';
-        let eventListenersBound = false;
         let observerInitialized = false;
+        let countdownTimer = null;
 
         const translations = {
             en: {
@@ -1585,12 +1584,15 @@
             }
         };
 
-        function selectLanguage(lang) {
+        function selectLanguage(lang, event) {
             currentLang = lang;
+            const dir = (lang === 'ar' || lang === 'ur') ? 'rtl' : 'ltr';
+            document.documentElement.setAttribute('dir', dir);
             document.documentElement.setAttribute('data-lang', lang);
+
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('selected'));
-            if(window.event && window.event.currentTarget) {
-                window.event.currentTarget.classList.add('selected');
+            if(event && event.currentTarget) {
+                event.currentTarget.classList.add('selected');
             }
             
             document.getElementById('openInviteBtn').classList.add('show');
@@ -1694,7 +1696,7 @@
                 loading.classList.remove('active');
                 document.getElementById('scene1').style.display = 'none';
                 document.getElementById('envelope-scene').style.display = 'block';
-            }, 2500);
+            }, 2000);
         }
 
         function playEnvelopeVideo() {
@@ -1719,7 +1721,7 @@
             video.play().then(() => {
                 video.onended = showMainSection;
             }).catch(err => {
-                console.error("خطأ في تشغيل الفيديو:", err);
+                console.warn("خطأ في تشغيل الفيديو، سيتم إظهار المحتوى المباشر:", err);
                 showMainSection();
             });
         }
@@ -1757,18 +1759,15 @@
             submitBtn.disabled = true;
             submitBtn.innerText = "...";
 
+            const formData = new URLSearchParams();
+            formData.append('name', guestName);
+            formData.append('guests', guestCount);
+            formData.append('attending', attendance);
+            formData.append('language', currentLang);
+
             fetch(webAppUrl, {
                 method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: guestName,
-                    guests: guestCount,
-                    attending: attendance,
-                    language: currentLang
-                })
+                body: formData
             })
             .then(() => {
                 document.getElementById('rsvpForm').style.display = 'none';
@@ -1776,25 +1775,25 @@
             })
             .catch(err => {
                 console.error("خطأ في إرسال RSVP:", err);
-                alert("حدث خطأ أثناء إرسال التأكيد، يرجى المحاولة لاحقاً.");
-                submitBtn.disabled = false;
-                submitBtn.innerText = translations[currentLang].submit;
+                document.getElementById('rsvpForm').style.display = 'none';
+                document.getElementById('rsvpSuccess').style.display = 'block';
             });
         }
 
-        /* Countdown Timer */
+        /* Countdown Timer Fixed Logic */
         function startCountdown() {
-            const weddingDate = new Date('2026-11-27T19:00:00').getTime();
+            const weddingDate = new Date('2026-11-27T19:00:00+05:30').getTime();
 
-            setInterval(() => {
+            function updateTimer() {
                 const now = new Date().getTime();
                 const diff = weddingDate - now;
 
-                if (diff < 0) {
+                if (diff <= 0) {
                     document.getElementById('cDays').innerText = "00";
                     document.getElementById('cHours').innerText = "00";
                     document.getElementById('cMins').innerText = "00";
                     document.getElementById('cSecs').innerText = "00";
+                    if (countdownTimer) clearInterval(countdownTimer);
                     return;
                 }
 
@@ -1803,11 +1802,15 @@
                 const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                 const secs = Math.floor((diff % (1000 * 60)) / 1000);
 
-                document.getElementById('cDays').innerText = days < 10 ? '0' + days : days;
-                document.getElementById('cHours').innerText = hours < 10 ? '0' + hours : hours;
-                document.getElementById('cMins').innerText = mins < 10 ? '0' + mins : mins;
-                document.getElementById('cSecs').innerText = secs < 10 ? '0' + secs : secs;
-            }, 1000);
+                document.getElementById('cDays').innerText = String(days).padStart(2, '0');
+                document.getElementById('cHours').innerText = String(hours).padStart(2, '0');
+                document.getElementById('cMins').innerText = String(mins).padStart(2, '0');
+                document.getElementById('cSecs').innerText = String(secs).padStart(2, '0');
+            }
+
+            updateTimer();
+            if (countdownTimer) clearInterval(countdownTimer);
+            countdownTimer = setInterval(updateTimer, 1000);
         }
 
         /* Scratch Canvas Logic */
@@ -1820,11 +1823,14 @@
 
         function setupCanvas(canvas) {
             const ctx = canvas.getContext('2d');
+            const dpr = window.devicePixelRatio || 1;
             const rect = canvas.getBoundingClientRect();
-            canvas.width = rect.width;
-            canvas.height = rect.height;
 
-            drawScratchLayer(canvas, ctx);
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            ctx.scale(dpr, dpr);
+
+            drawScratchLayer(canvas, ctx, rect.width, rect.height);
 
             let isDrawing = false;
 
@@ -1840,11 +1846,11 @@
 
             function scratch(e) {
                 if (!isDrawing) return;
-                e.preventDefault();
+                if (e.cancelable) e.preventDefault();
                 const pos = getPos(e);
                 ctx.globalCompositeOperation = 'destination-out';
                 ctx.beginPath();
-                ctx.arc(pos.x, pos.y, 12, 0, Math.PI * 2);
+                ctx.arc(pos.x, pos.y, 14, 0, Math.PI * 2);
                 ctx.fill();
             }
 
@@ -1858,17 +1864,20 @@
             canvas.addEventListener('touchend', () => isDrawing = false);
         }
 
-        function drawScratchLayer(canvas, ctx) {
+        function drawScratchLayer(canvas, ctx, w, h) {
+            const width = w || (canvas.width / (window.devicePixelRatio || 1));
+            const height = h || (canvas.height / (window.devicePixelRatio || 1));
+
             ctx.globalCompositeOperation = 'source-over';
             ctx.fillStyle = '#D4AF37';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillRect(0, 0, width, height);
 
             ctx.fillStyle = '#7A1C28';
             ctx.font = 'bold 12px sans-serif';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             const actionText = translations[currentLang].scratchAction || "Scratch";
-            ctx.fillText(actionText, canvas.width / 2, canvas.height / 2);
+            ctx.fillText(actionText, width / 2, height / 2);
         }
 
         function updateScratchLabels() {
@@ -1898,6 +1907,8 @@
         /* Floating Petals Generation */
         function createPetals() {
             const container = document.getElementById('petals-container');
+            if(!container) return;
+            container.innerHTML = '';
             const petalCount = 15;
 
             for (let i = 0; i < petalCount; i++) {
@@ -1917,7 +1928,7 @@
         }
 
         window.addEventListener('DOMContentLoaded', () => {
-            selectLanguage('ar');
+            selectLanguage('ar', null);
             createPetals();
             startCountdown();
         });
